@@ -36,11 +36,11 @@ body {
   font-family: "Trebuchet MS", "Avenir Next", "Segoe UI", sans-serif;
   color: var(--ink);
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.14), rgba(225, 237, 255, 0.18)),
-    radial-gradient(circle at 18% 18%, rgba(255, 255, 255, 0.72), transparent 24%),
-    radial-gradient(circle at 82% 12%, rgba(255, 227, 109, 0.36), transparent 22%),
-    radial-gradient(circle at 15% 80%, rgba(255, 79, 136, 0.24), transparent 25%),
-    radial-gradient(circle at 88% 72%, rgba(25, 200, 193, 0.28), transparent 26%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.1), rgba(225, 237, 255, 0.16)),
+    radial-gradient(circle at 18% 18%, rgba(255, 255, 255, 0.78), transparent 24%),
+    radial-gradient(circle at 82% 12%, rgba(255, 227, 109, 0.46), transparent 22%),
+    radial-gradient(circle at 15% 80%, rgba(255, 79, 136, 0.34), transparent 25%),
+    radial-gradient(circle at 88% 72%, rgba(25, 200, 193, 0.38), transparent 26%),
     url("./assets/backgrounds/lab-background.png") center center / cover no-repeat;
   background-attachment: fixed;
 }
@@ -96,8 +96,8 @@ select {
   inset: 0;
   z-index: -1;
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(220, 233, 255, 0.14)),
-    radial-gradient(circle at top, rgba(255, 255, 255, 0.38), transparent 34%);
+    linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(220, 233, 255, 0.1)),
+    radial-gradient(circle at top, rgba(255, 255, 255, 0.3), transparent 34%);
   pointer-events: none;
 }
 
@@ -122,7 +122,7 @@ select {
   border-radius: 34px;
   background:
     radial-gradient(circle at top left, rgba(255, 255, 255, 0.96), transparent 25%),
-    linear-gradient(135deg, rgba(246, 247, 249, 0.94), rgba(217, 222, 230, 0.86), rgba(188, 196, 208, 0.8));
+    linear-gradient(135deg, rgba(255, 79, 136, 0.24), rgba(255, 227, 109, 0.32), rgba(25, 200, 193, 0.24));
   box-shadow: var(--shadow);
 }
 
@@ -145,8 +145,8 @@ select {
   border-radius: 34px;
   color: #fff;
   background:
-    radial-gradient(circle at top left, rgba(255, 255, 255, 0.18), transparent 28%),
-    linear-gradient(165deg, var(--ash-700), var(--ash-600), var(--ash-500));
+    radial-gradient(circle at top left, rgba(255, 255, 255, 0.3), transparent 28%),
+    linear-gradient(165deg, var(--violet), var(--pink), var(--orange));
   box-shadow: var(--shadow);
 }
 
@@ -226,11 +226,11 @@ select {
   padding: 10px 16px;
   border: 0;
   border-radius: 999px;
-  background: linear-gradient(145deg, rgba(236, 239, 243, 0.96), rgba(188, 196, 208, 0.86));
+  background: linear-gradient(145deg, rgba(76, 141, 255, 0.2), rgba(124, 92, 255, 0.24));
   color: var(--ink);
   font-weight: 900;
   cursor: pointer;
-  box-shadow: 0 10px 22px rgba(47, 54, 66, 0.08);
+  box-shadow: 0 10px 22px rgba(76, 141, 255, 0.16);
 }
 
 .start-card,
@@ -261,7 +261,7 @@ select {
   min-height: 58px;
   padding: 14px 18px;
   border-radius: 18px;
-  border: 2px solid rgba(151, 161, 176, 0.22);
+  border: 2px solid rgba(76, 141, 255, 0.18);
   background: rgba(255, 255, 255, 0.96);
 }
 
@@ -269,7 +269,7 @@ select {
   min-height: 58px;
   padding: 14px 18px;
   border-radius: 18px;
-  border: 2px solid rgba(151, 161, 176, 0.22);
+  border: 2px solid rgba(76, 141, 255, 0.18);
   background: rgba(255, 255, 255, 0.96);
   color: var(--ink);
   font-weight: 800;
@@ -303,7 +303,7 @@ select {
 }
 
 .roadmap-card:focus-visible {
-  outline: 3px solid rgba(111, 120, 135, 0.38);
+  outline: 3px solid rgba(76, 141, 255, 0.5);
   outline-offset: 2px;
 }
 
@@ -324,19 +324,19 @@ select {
 
 .roadmap-card small {
   margin-top: 8px;
-  color: var(--ash-600);
+  color: #a45e20;
   font-weight: 800;
 }
 
 .roadmap-card.active {
-  border-color: rgba(83, 92, 107, 0.4);
-  background: linear-gradient(135deg, rgba(246, 247, 249, 0.96), rgba(217, 222, 230, 0.92), rgba(151, 161, 176, 0.24));
+  border-color: rgba(255, 79, 136, 0.5);
+  background: linear-gradient(135deg, rgba(255, 227, 109, 0.4), rgba(255, 79, 136, 0.14), rgba(25, 200, 193, 0.16));
   transform: translateY(-4px);
 }
 
 .roadmap-card.done {
-  border-color: rgba(111, 120, 135, 0.22);
-  background: linear-gradient(135deg, rgba(236, 239, 243, 0.92), rgba(255, 255, 255, 0.92));
+  border-color: rgba(15, 159, 117, 0.28);
+  background: linear-gradient(135deg, rgba(15, 159, 117, 0.18), rgba(255, 255, 255, 0.9));
 }
 
 .primary-button,
@@ -370,20 +370,20 @@ select {
 
 .primary-button {
   color: #fff;
-  background: linear-gradient(145deg, var(--ash-700), var(--ash-500));
-  box-shadow: 0 14px 28px rgba(47, 54, 66, 0.22);
+  background: linear-gradient(145deg, var(--pink), var(--orange));
+  box-shadow: 0 14px 28px rgba(255, 79, 136, 0.28);
 }
 
 .secondary-button {
-  color: var(--ash-700);
+  color: #a6502b;
   background: #fff;
-  border: 1px solid rgba(151, 161, 176, 0.2);
+  border: 1px solid rgba(166, 80, 43, 0.12);
 }
 
 .danger-button {
   color: #fff;
-  background: linear-gradient(145deg, #586171, #3c4451);
-  box-shadow: 0 14px 28px rgba(47, 54, 66, 0.2);
+  background: linear-gradient(145deg, #d8193c, #ff5b5b);
+  box-shadow: 0 14px 28px rgba(216, 25, 60, 0.28);
 }
 
 .stats-grid {
@@ -395,7 +395,7 @@ select {
   padding: 14px 16px;
   border-radius: 24px;
   background: rgba(255, 255, 255, 0.92);
-  border: 1px solid rgba(151, 161, 176, 0.18);
+  border: 1px solid rgba(76, 141, 255, 0.14);
 }
 
 .stat-card span,
@@ -441,11 +441,11 @@ select {
 }
 
 .mode-pill {
-  background: linear-gradient(140deg, var(--ash-700), var(--ash-600));
+  background: linear-gradient(140deg, var(--blue), var(--violet));
 }
 
 .score-pill {
-  background: linear-gradient(140deg, var(--ash-600), var(--ash-500));
+  background: linear-gradient(140deg, var(--teal), var(--blue));
 }
 
 .timer-track {
@@ -454,14 +454,14 @@ select {
   border-radius: 999px;
   overflow: hidden;
   background: rgba(255, 255, 255, 0.72);
-  border: 1px solid rgba(151, 161, 176, 0.16);
+  border: 1px solid rgba(76, 141, 255, 0.12);
 }
 
 .timer-bar {
   height: 100%;
   width: 100%;
   border-radius: inherit;
-  background: linear-gradient(90deg, var(--ash-400), var(--ash-600), var(--ash-700));
+  background: linear-gradient(90deg, var(--teal), var(--yellow), var(--pink));
   box-shadow: inset 0 0 18px rgba(255, 255, 255, 0.35);
   transition: width 320ms linear;
 }
@@ -475,7 +475,7 @@ select {
   background:
     radial-gradient(circle at top left, rgba(255, 255, 255, 0.92), transparent 20%),
     rgba(255, 255, 255, 0.78);
-  border: 1px solid rgba(151, 161, 176, 0.16);
+  border: 1px solid rgba(76, 141, 255, 0.12);
 }
 
 .choice-grid {
@@ -502,7 +502,7 @@ select {
   border-radius: 50%;
   display: inline-grid;
   place-items: center;
-  background: linear-gradient(145deg, rgba(236, 239, 243, 0.98), rgba(188, 196, 208, 0.72));
+  background: linear-gradient(145deg, rgba(255, 227, 109, 0.56), rgba(255, 79, 136, 0.18));
 }
 
 .scene-grid {
@@ -523,8 +523,8 @@ select {
   border-radius: 30px;
   background:
     radial-gradient(circle at top left, rgba(255, 255, 255, 0.96), transparent 30%),
-    linear-gradient(135deg, rgba(246, 247, 249, 0.96), rgba(236, 239, 243, 0.88), rgba(188, 196, 208, 0.34));
-  border: 2px solid rgba(151, 161, 176, 0.18);
+    linear-gradient(135deg, rgba(25, 200, 193, 0.18), rgba(255, 227, 109, 0.28), rgba(255, 79, 136, 0.16));
+  border: 2px solid rgba(76, 141, 255, 0.14);
   box-shadow: 0 16px 30px rgba(30, 39, 73, 0.08);
 }
 
@@ -585,8 +585,8 @@ select {
   padding: 16px;
   text-align: center;
   border-radius: 18px;
-  background: linear-gradient(145deg, rgba(255, 255, 255, 0.96), rgba(236, 239, 243, 0.92));
-  border: 2px dashed rgba(151, 161, 176, 0.28);
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.94), rgba(255, 227, 109, 0.36));
+  border: 2px dashed rgba(76, 141, 255, 0.28);
   color: var(--ink);
 }
 
@@ -663,7 +663,7 @@ select {
   padding: 10px;
   background:
     radial-gradient(circle at top, rgba(255, 255, 255, 0.92), transparent 48%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.95), rgba(236, 239, 243, 0.88));
+    linear-gradient(180deg, rgba(255, 255, 255, 0.95), rgba(255, 240, 166, 0.72));
 }
 
 .scene-photo {
@@ -724,13 +724,13 @@ select {
 .choice-card.selected,
 .scene-card.selected {
   transform: translateY(-4px);
-  border-color: rgba(83, 92, 107, 0.58);
+  border-color: rgba(76, 141, 255, 0.72);
 }
 
 .choice-card.selected::after,
 .scene-card.selected::after {
   opacity: 1;
-  background: linear-gradient(145deg, rgba(188, 196, 208, 0.24), rgba(255, 255, 255, 0.08));
+  background: linear-gradient(145deg, rgba(76, 141, 255, 0.18), rgba(255, 255, 255, 0.08));
 }
 
 .choice-card.correct,
@@ -757,8 +757,8 @@ select {
   border-radius: 30px;
   background:
     radial-gradient(circle at top left, rgba(255, 255, 255, 0.96), transparent 30%),
-    linear-gradient(135deg, rgba(246, 247, 249, 0.96), rgba(236, 239, 243, 0.88), rgba(188, 196, 208, 0.34));
-  border: 2px solid rgba(151, 161, 176, 0.18);
+    linear-gradient(135deg, rgba(76, 141, 255, 0.16), rgba(255, 227, 109, 0.3), rgba(25, 200, 193, 0.16));
+  border: 2px solid rgba(76, 141, 255, 0.14);
   box-shadow: 0 16px 30px rgba(30, 39, 73, 0.08);
 }
 
@@ -784,15 +784,15 @@ select {
   min-height: 52px;
   padding: 12px 18px;
   font-weight: 900;
-  background: linear-gradient(145deg, rgba(246, 247, 249, 0.98), rgba(217, 222, 230, 0.88));
+  background: linear-gradient(145deg, rgba(255, 227, 109, 0.4), rgba(255, 79, 136, 0.16));
   touch-action: none;
   cursor: grab;
   user-select: none;
-  box-shadow: 0 10px 18px rgba(47, 54, 66, 0.08);
+  box-shadow: 0 10px 18px rgba(255, 155, 66, 0.12);
 }
 
 .word-tile.answer {
-  background: linear-gradient(145deg, rgba(217, 222, 230, 0.98), rgba(151, 161, 176, 0.28));
+  background: linear-gradient(145deg, rgba(76, 141, 255, 0.24), rgba(25, 200, 193, 0.18));
 }
 
 .word-tile:active {
@@ -927,7 +927,7 @@ select {
   margin-left: 8px;
   padding: 3px 8px;
   border-radius: 999px;
-  background: linear-gradient(145deg, var(--ash-700), var(--ash-500));
+  background: linear-gradient(145deg, #19c8c1, #4c8dff);
   color: #fff;
   font-size: 0.72rem;
   font-weight: 900;
@@ -939,12 +939,12 @@ select {
   padding: 10px 16px;
   border: 0;
   border-radius: 16px;
-  background: linear-gradient(145deg, var(--ash-700), var(--ash-500));
+  background: linear-gradient(145deg, #ff245f, #ff9b42);
   color: #fff;
   font-weight: 900;
   font-size: 0.96rem;
   letter-spacing: 0.02em;
-  box-shadow: 0 12px 20px rgba(47, 54, 66, 0.2);
+  box-shadow: 0 12px 20px rgba(255, 36, 95, 0.26);
   cursor: pointer;
   white-space: nowrap;
 }
@@ -1013,7 +1013,7 @@ select {
 .bank-chip {
   padding: 10px 14px;
   border-radius: 999px;
-  background: linear-gradient(145deg, rgba(246, 247, 249, 0.96), rgba(217, 222, 230, 0.84));
+  background: linear-gradient(145deg, rgba(255, 227, 109, 0.34), rgba(76, 141, 255, 0.14));
   font-weight: 800;
 }
 
