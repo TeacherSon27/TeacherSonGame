@@ -1660,19 +1660,33 @@ function resetRemoteScores() {
     });
 }
 
+function currentPublicGameUrl() {
+  return window.location.href.split("#")[0];
+}
+
+function setQrForUrl(url) {
+  const safeUrl = url || currentPublicGameUrl();
+  ui.shareLink.href = safeUrl;
+  ui.shareLink.textContent = safeUrl;
+
+  const localFallback = `./game-qr.svg?v=${encodeURIComponent(safeUrl)}`;
+  ui.qrImage.onerror = () => {
+    ui.qrImage.onerror = () => {};
+    ui.qrImage.src = localFallback;
+  };
+  ui.qrImage.src = `https://api.qrserver.com/v1/create-qr-code/?size=320x320&data=${encodeURIComponent(safeUrl)}`;
+}
+
 function loadShareLink() {
   fetch("./share-url.txt")
     .then((response) => (response.ok ? response.text() : ""))
     .then((text) => {
-      const url = text.trim();
-      if (!url) {
-        return;
-      }
-      ui.shareLink.href = url;
-      ui.shareLink.textContent = url;
-      ui.qrImage.src = `./game-qr.svg?v=${encodeURIComponent(url)}`;
+      const url = text.trim() || currentPublicGameUrl();
+      setQrForUrl(url);
     })
-    .catch(() => {});
+    .catch(() => {
+      setQrForUrl(currentPublicGameUrl());
+    });
 }
 
 function toggleSound() {
