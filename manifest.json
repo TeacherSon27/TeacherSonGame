@@ -1,0 +1,10 @@
+{
+  "name": "What's Wrong?",
+  "short_name": "What's Wrong?",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#fff5b8",
+  "theme_color": "#ff5f6d",
+  "description": "A colorful Grade 5 classroom game based on the G5 Co-teaching 1, G5 Midterm, and G5 - L2 PowerPoint presentations.",
+  "icons": []
+}
