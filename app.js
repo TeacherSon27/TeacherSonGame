@@ -361,8 +361,8 @@ function repeatVisual(label, image, alt, count) {
 function imageMarkup(src, alt, className, fallbackTitle, fallbackText = "") {
   return `
     <div class="image-shell">
-      <img class="${className}" src="${src}" alt="${escapeHtml(alt)}" loading="eager" decoding="sync" fetchpriority="high">
-      <div class="image-fallback is-hidden">
+      <img class="${className}" src="${src}" alt="${escapeHtml(alt)}" data-src-base="${escapeHtml(src)}" loading="eager" decoding="sync" fetchpriority="high">
+      <div class="image-fallback">
         <strong>${escapeHtml(fallbackTitle)}</strong>
         ${fallbackText ? `<span>${escapeHtml(fallbackText)}</span>` : ""}
       </div>
@@ -397,6 +397,64 @@ function preloadQuestionImages(question) {
 
 function warmImageAssets() {
   IMAGE_PRELOAD_URLS.forEach(preloadImage);
+}
+
+function retryImageSource(src) {
+  if (!src) {
+    return src;
+  }
+  const separator = src.includes("?") ? "&" : "?";
+  return `${src}${separator}retry=${Date.now()}`;
+}
+
+function markImageLoaded(image) {
+  const shell = image.closest(".image-shell");
+  if (shell) {
+    shell.classList.add("is-loaded");
+  }
+}
+
+function showImageFallback(image) {
+  const shell = image.closest(".image-shell");
+  if (shell) {
+    shell.classList.remove("is-loaded");
+  }
+  image.classList.add("is-hidden");
+}
+
+function bindQuestionImages(root = ui.questionArea) {
+  const images = root.querySelectorAll(".image-shell img");
+  images.forEach((image) => {
+    if (image.dataset.bound === "true") {
+      return;
+    }
+
+    image.dataset.bound = "true";
+    image.addEventListener("load", () => {
+      if (image.naturalWidth > 0) {
+        markImageLoaded(image);
+      } else {
+        showImageFallback(image);
+      }
+    });
+
+    image.addEventListener("error", () => {
+      if (image.dataset.retried !== "true") {
+        image.dataset.retried = "true";
+        image.src = retryImageSource(image.dataset.srcBase || image.currentSrc || image.src);
+        return;
+      }
+      showImageFallback(image);
+    });
+
+    if (image.complete) {
+      if (image.naturalWidth > 0) {
+        markImageLoaded(image);
+      } else if (image.currentSrc || image.src) {
+        image.dispatchEvent(new Event("error"));
+      }
+    }
+  });
 }
 
 function hintQuestionFor(text) {
@@ -922,6 +980,7 @@ function renderQuestion() {
     renderScramble(question);
   }
 
+  bindQuestionImages(ui.questionArea);
   updateStats();
 }
 

@@ -574,6 +574,24 @@ select {
   width: 100%;
   display: grid;
   place-items: center;
+  position: relative;
+}
+
+.image-shell > * {
+  grid-area: 1 / 1;
+}
+
+.image-shell img {
+  opacity: 0;
+  transition: opacity 180ms ease;
+}
+
+.image-shell.is-loaded img {
+  opacity: 1;
+}
+
+.image-shell.is-loaded .image-fallback {
+  display: none;
 }
 
 .image-fallback {
