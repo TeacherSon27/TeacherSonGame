@@ -437,6 +437,7 @@ function retryImageSource(src) {
 
 function markImageLoaded(image) {
   const shell = image.closest(".image-shell");
+  image.classList.remove("is-hidden");
   if (shell) {
     shell.classList.add("is-loaded");
   }
@@ -1102,6 +1103,7 @@ function renderPictureMatch(question) {
       </div>
     </div>
   `;
+  bindQuestionImages(ui.questionArea);
 }
 
 function renderScramble(question) {
@@ -1151,6 +1153,7 @@ function renderScramble(question) {
   [...ui.questionArea.querySelectorAll(".word-tile")].forEach((button) => {
     button.addEventListener("pointerdown", handleTileDragStart);
   });
+  bindQuestionImages(ui.questionArea);
 }
 
 function moveWordBetweenAreas(sourceArea, sourceIndex, targetArea, targetIndex = null) {
