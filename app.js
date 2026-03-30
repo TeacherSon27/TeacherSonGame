@@ -163,25 +163,25 @@ const IMAGE_PRELOAD_URLS = Array.from(
 const SCENES = {
   rianaFever: sceneCard("Riana", "She has a fever.", "female", ["🤒", "🌡️"], "", SCENE_CARD_IMAGES.rianaFever),
   seniorToothache: sceneCard("Senior", "He has a toothache.", "male", ["🦷", "😖"], "", SCENE_CARD_IMAGES.seniorToothache),
-  selenaFootHurts: sceneCard("Selena", "Her leg hurts.", "female", ["🦵", "⚡"], "", SCENE_CARD_IMAGES.selenaFootHurts),
-  austinHandsHurt: sceneCard("Austin", "His hands hurt.", "male", ["🙌", "⚡"], "", SCENE_CARD_IMAGES.austinHandsHurt),
-  rianaHeadache: sceneCard("Riana", "She has a headache.", "female", ["🤕", "💫"], "", SCENE_CARD_IMAGES.rianaHeadache),
+  selenaFootHurts: sceneCard("Picture Clue", "Her leg hurts.", "female", ["🦵", "⚡"], "", SCENE_CARD_IMAGES.selenaFootHurts),
+  austinHandsHurt: sceneCard("Picture Clue", "His hands hurt.", "male", ["🙌", "⚡"], "", SCENE_CARD_IMAGES.austinHandsHurt),
+  rianaHeadache: sceneCard("Picture Clue", "She has a headache.", "female", ["🤕", "💫"], "", SCENE_CARD_IMAGES.rianaHeadache),
   kheviaStomachache: sceneCard("Khevia", "She has a stomachache.", "female", ["🤢", "💚"], "", SCENE_CARD_IMAGES.kheviaStomachache),
   austinRunnyNose: sceneCard("Austin", "I have a runny nose.", "male", ["🤧", "💧"], "", SCENE_CARD_IMAGES.austinRunnyNose),
   theySoreThroat: sceneCard("Group", "They have a sore throat.", "group", ["😷", "🗣️"], "", SCENE_CARD_IMAGES.theySoreThroat),
-  seniorHandHurts: sceneCard("Senior", "My hand hurts.", "male", ["✋", "⚡"], "", SCENE_CARD_IMAGES.seniorHandHurts),
-  rianaHandHurts: sceneCard("Riana", "Her hand hurts.", "female", ["✋", "⚡"], "", SCENE_CARD_IMAGES.rianaHandHurts),
-  francoLegHurts: sceneCard("Franco", "His foot hurts.", "male", ["🦶", "⚡"], "", SCENE_CARD_IMAGES.francoLegHurts),
-  hisHandsLegsHurt: sceneCard("Austin", "His hands and legs hurt.", "male", ["🙌", "🦵"], "", SCENE_CARD_IMAGES.hisHandsLegsHurt),
+  seniorHandHurts: sceneCard("Picture Clue", "My hand hurts.", "male", ["✋", "⚡"], "", SCENE_CARD_IMAGES.seniorHandHurts),
+  rianaHandHurts: sceneCard("Picture Clue", "Her hand hurts.", "female", ["✋", "⚡"], "", SCENE_CARD_IMAGES.rianaHandHurts),
+  francoLegHurts: sceneCard("Austin", "His foot hurts.", "male", ["🦶", "⚡"], "", SCENE_CARD_IMAGES.francoLegHurts),
+  hisHandsLegsHurt: sceneCard("Picture Clue", "His hands and legs hurt.", "male", ["🙌", "🦵"], "", SCENE_CARD_IMAGES.hisHandsLegsHurt),
   theirHandsHurt: sceneCard("Team", "Their hands hurt.", "group", ["🙌", "✨"], "", SCENE_CARD_IMAGES.theirHandsHurt),
-  christinaEyeHurts: sceneCard("Christina", "Her eye hurts.", "female", ["👁️", "⚡"], "", SCENE_CARD_IMAGES.christinaEyeHurts),
+  christinaEyeHurts: sceneCard("Riana", "Her eye hurts.", "female", ["👁️", "⚡"], "", SCENE_CARD_IMAGES.christinaEyeHurts),
   francoEyesHurt: sceneCard("Franco", "My eyes hurt.", "male", ["👀", "⚡"], "", SCENE_CARD_IMAGES.francoEyesHurt),
-  yesSheRunnyNose: sceneCard("Selena", "Yes, she does.", "female", ["🤧", "✅"], "", SCENE_CARD_IMAGES.yesSheRunnyNose),
+  yesSheRunnyNose: sceneCard("Answer Card", "Yes, she does.", "female", ["🤧", "✅"], "", SCENE_CARD_IMAGES.yesSheRunnyNose),
   noSheStomachache: sceneCard("Khevia", "No, she doesn't. She has a stomachache.", "female", ["🤢", "❌"], "", SCENE_CARD_IMAGES.noSheStomachache),
-  yesHeFever: sceneCard("Austin", "Yes, he does.", "male", ["🤒", "✅"], "", SCENE_CARD_IMAGES.yesHeFever),
+  yesHeFever: sceneCard("Answer Card", "Yes, he does.", "male", ["🤒", "✅"], "", SCENE_CARD_IMAGES.yesHeFever),
   noHeToothache: sceneCard("Senior", "No, he doesn't. He has a toothache.", "male", ["🦷", "❌"], "", SCENE_CARD_IMAGES.noHeToothache),
-  yesTheyRunnyNose: sceneCard("Pair", "Yes, they do.", "group", ["🤧", "✅"], "", SCENE_CARD_IMAGES.yesTheyRunnyNose),
-  noTheyHeadache: sceneCard("Group", "No, they don't. They have a headache.", "group", ["🤕", "❌"], "", SCENE_CARD_IMAGES.noTheyHeadache)
+  yesTheyRunnyNose: sceneCard("Answer Card", "Yes, they do.", "group", ["🤧", "✅"], "", SCENE_CARD_IMAGES.yesTheyRunnyNose),
+  noTheyHeadache: sceneCard("Answer Card", "No, they don't. They have a headache.", "group", ["🤕", "❌"], "", SCENE_CARD_IMAGES.noTheyHeadache)
 };
 
 const MC_QUESTIONS = [
