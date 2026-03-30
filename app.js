@@ -91,69 +91,97 @@ const LEVELS = [
   }
 ];
 
-const SCENE_IMAGE_VERSION = "20260329c";
-const CO1_IMAGE_VERSION = "20260329b";
+const CUSTOM_IMAGE_VERSION = "20260330a";
 
 const SCENE_IMAGES = {
-  fever: `./assets/scene-cards/fever.png?v=${SCENE_IMAGE_VERSION}`,
-  toothache: `./assets/scene-cards/toothache.png?v=${SCENE_IMAGE_VERSION}`,
-  footHurts: `./assets/scene-cards/foot-hurts.png?v=${SCENE_IMAGE_VERSION}`,
-  handHurts: `./assets/scene-cards/hand-hurts.png?v=${SCENE_IMAGE_VERSION}`,
-  handsHurt: `./assets/scene-cards/hands-hurt.png?v=${SCENE_IMAGE_VERSION}`,
-  headache: `./assets/scene-cards/headache.png?v=${SCENE_IMAGE_VERSION}`,
-  stomachache: `./assets/scene-cards/stomachache.png?v=${SCENE_IMAGE_VERSION}`,
-  runnyNose: `./assets/scene-cards/runny-nose.png?v=${SCENE_IMAGE_VERSION}`,
-  soreThroat: `./assets/scene-cards/sore-throat.png?v=${SCENE_IMAGE_VERSION}`,
-  legHurts: `./assets/scene-cards/leg-hurts.png?v=${SCENE_IMAGE_VERSION}`,
-  eyeHurtsFemale: `./assets/scene-cards/eye-hurts-female.png?v=${SCENE_IMAGE_VERSION}`,
-  eyeHurtsMale: `./assets/scene-cards/eye-hurts-male.png?v=${SCENE_IMAGE_VERSION}`
+  fever: `./assets/custom-whats-wrong/fever.png?v=${CUSTOM_IMAGE_VERSION}`,
+  toothache: `./assets/custom-whats-wrong/toothache.png?v=${CUSTOM_IMAGE_VERSION}`,
+  footHurts: `./assets/custom-whats-wrong/foot-hurts.png?v=${CUSTOM_IMAGE_VERSION}`,
+  handHurts: `./assets/custom-whats-wrong/hand-hurts.png?v=${CUSTOM_IMAGE_VERSION}`,
+  handsHurt: `./assets/custom-whats-wrong/hands-hurt.png?v=${CUSTOM_IMAGE_VERSION}`,
+  headache: `./assets/custom-whats-wrong/headache.png?v=${CUSTOM_IMAGE_VERSION}`,
+  stomachache: `./assets/custom-whats-wrong/stomachache.png?v=${CUSTOM_IMAGE_VERSION}`,
+  runnyNose: `./assets/custom-whats-wrong/runny-nose.png?v=${CUSTOM_IMAGE_VERSION}`,
+  soreThroat: `./assets/custom-whats-wrong/sore-throat.png?v=${CUSTOM_IMAGE_VERSION}`,
+  legHurts: `./assets/custom-whats-wrong/leg-hurts.png?v=${CUSTOM_IMAGE_VERSION}`,
+  eyeHurtsFemale: `./assets/custom-whats-wrong/eye-hurts-female.png?v=${CUSTOM_IMAGE_VERSION}`,
+  eyeHurtsMale: `./assets/custom-whats-wrong/eye-hurts-male.png?v=${CUSTOM_IMAGE_VERSION}`
 };
 
 const BODY_IMAGES = {
-  eye: `./assets/ppt-images/co1/image38.png?v=${CO1_IMAGE_VERSION}`,
-  hands: `./assets/ppt-images/co1/image36.png?v=${CO1_IMAGE_VERSION}`,
-  arm: `./assets/ppt-images/co1/image51.png?v=${CO1_IMAGE_VERSION}`,
-  foot: "./assets/body-icons/foot.svg",
-  leg: "./assets/body-icons/leg.svg",
-  ear: `./assets/ppt-images/co1/image66.png?v=${CO1_IMAGE_VERSION}`
+  eye: `./assets/custom-whats-wrong/one-eye.png?v=${CUSTOM_IMAGE_VERSION}`,
+  hands: `./assets/custom-whats-wrong/two-hands.png?v=${CUSTOM_IMAGE_VERSION}`,
+  arm: `./assets/custom-whats-wrong/three-arms.png?v=${CUSTOM_IMAGE_VERSION}`,
+  foot: `./assets/custom-whats-wrong/two-feet.png?v=${CUSTOM_IMAGE_VERSION}`,
+  leg: `./assets/custom-whats-wrong/five-legs.png?v=${CUSTOM_IMAGE_VERSION}`,
+  ear: `./assets/custom-whats-wrong/ear-hurts.png?v=${CUSTOM_IMAGE_VERSION}`
 };
 
 const PDF_REFERENCE_IMAGES = {
-  twoHands: "./assets/pdf-reference/two-hands.png",
-  threeArms: "./assets/pdf-reference/three-arms.png",
-  twoFeet: "./assets/pdf-reference/two-feet.png",
-  fiveLegs: "./assets/pdf-reference/five-legs.png",
-  handHurtsEmoji: "./assets/pdf-reference/hand-hurts-emoji.png",
-  footHurtsEmoji: "./assets/pdf-reference/foot-hurts-emoji.png",
-  handsAndLegsBoy: "./assets/pdf-reference/hands-and-legs-boy.png"
+  twoHands: `./assets/custom-whats-wrong/two-hands.png?v=${CUSTOM_IMAGE_VERSION}`,
+  threeArms: `./assets/custom-whats-wrong/three-arms.png?v=${CUSTOM_IMAGE_VERSION}`,
+  twoFeet: `./assets/custom-whats-wrong/two-feet.png?v=${CUSTOM_IMAGE_VERSION}`,
+  fiveLegs: `./assets/custom-whats-wrong/five-legs.png?v=${CUSTOM_IMAGE_VERSION}`,
+  handHurtsEmoji: `./assets/custom-whats-wrong/hand-hurts.png?v=${CUSTOM_IMAGE_VERSION}`,
+  footHurtsEmoji: `./assets/custom-whats-wrong/foot-hurts.png?v=${CUSTOM_IMAGE_VERSION}`,
+  handsAndLegsBoy: `./assets/custom-whats-wrong/hands-and-legs-hurt.png?v=${CUSTOM_IMAGE_VERSION}`
+};
+
+const SCENE_CARD_IMAGES = {
+  rianaFever: `./assets/custom-whats-wrong/female-fever.png?v=${CUSTOM_IMAGE_VERSION}`,
+  seniorToothache: `./assets/custom-whats-wrong/male-toothache.png?v=${CUSTOM_IMAGE_VERSION}`,
+  selenaFootHurts: `./assets/custom-whats-wrong/female-foot-hurts.png?v=${CUSTOM_IMAGE_VERSION}`,
+  austinHandsHurt: `./assets/custom-whats-wrong/male-hands-hurt.png?v=${CUSTOM_IMAGE_VERSION}`,
+  rianaHeadache: `./assets/custom-whats-wrong/female-headache.png?v=${CUSTOM_IMAGE_VERSION}`,
+  kheviaStomachache: `./assets/custom-whats-wrong/female-stomachache.png?v=${CUSTOM_IMAGE_VERSION}`,
+  austinRunnyNose: `./assets/custom-whats-wrong/male-runny-nose.png?v=${CUSTOM_IMAGE_VERSION}`,
+  theySoreThroat: `./assets/custom-whats-wrong/group-sick.png?v=${CUSTOM_IMAGE_VERSION}`,
+  seniorHandHurts: `./assets/custom-whats-wrong/hand-hurts.png?v=${CUSTOM_IMAGE_VERSION}`,
+  rianaHandHurts: `./assets/custom-whats-wrong/female-hand-hurts.png?v=${CUSTOM_IMAGE_VERSION}`,
+  francoLegHurts: `./assets/custom-whats-wrong/male-foot-hurts.png?v=${CUSTOM_IMAGE_VERSION}`,
+  hisHandsLegsHurt: `./assets/custom-whats-wrong/male-hands-and-legs-hurt.png?v=${CUSTOM_IMAGE_VERSION}`,
+  theirHandsHurt: `./assets/custom-whats-wrong/female-hands-hurt.png?v=${CUSTOM_IMAGE_VERSION}`,
+  christinaEyeHurts: `./assets/custom-whats-wrong/female-eye-hurts.png?v=${CUSTOM_IMAGE_VERSION}`,
+  francoEyesHurt: `./assets/custom-whats-wrong/male-eye-hurts.png?v=${CUSTOM_IMAGE_VERSION}`,
+  yesSheRunnyNose: `./assets/custom-whats-wrong/female-runny-nose.png?v=${CUSTOM_IMAGE_VERSION}`,
+  noSheStomachache: `./assets/custom-whats-wrong/female-stomachache.png?v=${CUSTOM_IMAGE_VERSION}`,
+  yesHeFever: `./assets/custom-whats-wrong/male-fever.png?v=${CUSTOM_IMAGE_VERSION}`,
+  noHeToothache: `./assets/custom-whats-wrong/male-toothache.png?v=${CUSTOM_IMAGE_VERSION}`,
+  yesTheyRunnyNose: `./assets/custom-whats-wrong/runny-nose.png?v=${CUSTOM_IMAGE_VERSION}`,
+  noTheyHeadache: `./assets/custom-whats-wrong/headache.png?v=${CUSTOM_IMAGE_VERSION}`
 };
 
 const IMAGE_PRELOAD_URLS = Array.from(
-  new Set([...Object.values(SCENE_IMAGES), ...Object.values(BODY_IMAGES), ...Object.values(PDF_REFERENCE_IMAGES)])
+  new Set([
+    ...Object.values(SCENE_IMAGES),
+    ...Object.values(BODY_IMAGES),
+    ...Object.values(PDF_REFERENCE_IMAGES),
+    ...Object.values(SCENE_CARD_IMAGES)
+  ])
 );
 
 const SCENES = {
-  rianaFever: sceneCard("Riana", "She has a fever.", "female", ["🤒", "🌡️"], "", SCENE_IMAGES.fever),
-  seniorToothache: sceneCard("Senior", "He has a toothache.", "male", ["🦷", "😖"], "", SCENE_IMAGES.toothache),
-  selenaFootHurts: sceneCard("Selena", "Her leg hurts.", "female", ["🦵", "⚡"], "", SCENE_IMAGES.legHurts),
-  austinHandsHurt: sceneCard("Austin", "His hands hurt.", "male", ["🙌", "⚡"], "", SCENE_IMAGES.handsHurt),
-  rianaHeadache: sceneCard("Riana", "She has a headache.", "female", ["🤕", "💫"], "", SCENE_IMAGES.headache),
-  kheviaStomachache: sceneCard("Khevia", "She has a stomachache.", "female", ["🤢", "💚"], "", SCENE_IMAGES.stomachache),
-  austinRunnyNose: sceneCard("Austin", "I have a runny nose.", "male", ["🤧", "💧"], "", SCENE_IMAGES.runnyNose),
-  theySoreThroat: sceneCard("Group", "They have a sore throat.", "group", ["😷", "🗣️"], "", SCENE_IMAGES.soreThroat),
-  seniorHandHurts: sceneCard("Senior", "My hand hurts.", "male", ["✋", "⚡"], "", SCENE_IMAGES.handHurts),
-  rianaHandHurts: sceneCard("Riana", "Her hand hurts.", "female", ["✋", "⚡"], "", SCENE_IMAGES.handHurts),
-  francoLegHurts: sceneCard("Franco", "His foot hurts.", "male", ["🦶", "⚡"], "", SCENE_IMAGES.legHurts),
-  hisHandsLegsHurt: sceneCard("Austin", "His hands and legs hurt.", "male", ["🙌", "🦵"], "", SCENE_IMAGES.handsHurt),
-  theirHandsHurt: sceneCard("Team", "Their hands hurt.", "group", ["🙌", "✨"], "", SCENE_IMAGES.handsHurt),
-  christinaEyeHurts: sceneCard("Christina", "Her eye hurts.", "female", ["👁️", "⚡"], "", SCENE_IMAGES.eyeHurtsFemale),
-  francoEyesHurt: sceneCard("Franco", "My eyes hurt.", "male", ["👀", "⚡"], "", SCENE_IMAGES.eyeHurtsMale),
-  yesSheRunnyNose: sceneCard("Selena", "Yes, she does.", "female", ["🤧", "✅"], "", SCENE_IMAGES.runnyNose),
-  noSheStomachache: sceneCard("Khevia", "No, she doesn't. She has a stomachache.", "female", ["🤢", "❌"], "", SCENE_IMAGES.stomachache),
-  yesHeFever: sceneCard("Austin", "Yes, he does.", "male", ["🤒", "✅"], "", SCENE_IMAGES.fever),
-  noHeToothache: sceneCard("Senior", "No, he doesn't. He has a toothache.", "male", ["🦷", "❌"], "", SCENE_IMAGES.toothache),
-  yesTheyRunnyNose: sceneCard("Pair", "Yes, they do.", "group", ["🤧", "✅"], "", SCENE_IMAGES.runnyNose),
-  noTheyHeadache: sceneCard("Group", "No, they don't. They have a headache.", "group", ["🤕", "❌"], "", SCENE_IMAGES.headache)
+  rianaFever: sceneCard("Riana", "She has a fever.", "female", ["🤒", "🌡️"], "", SCENE_CARD_IMAGES.rianaFever),
+  seniorToothache: sceneCard("Senior", "He has a toothache.", "male", ["🦷", "😖"], "", SCENE_CARD_IMAGES.seniorToothache),
+  selenaFootHurts: sceneCard("Selena", "Her leg hurts.", "female", ["🦵", "⚡"], "", SCENE_CARD_IMAGES.selenaFootHurts),
+  austinHandsHurt: sceneCard("Austin", "His hands hurt.", "male", ["🙌", "⚡"], "", SCENE_CARD_IMAGES.austinHandsHurt),
+  rianaHeadache: sceneCard("Riana", "She has a headache.", "female", ["🤕", "💫"], "", SCENE_CARD_IMAGES.rianaHeadache),
+  kheviaStomachache: sceneCard("Khevia", "She has a stomachache.", "female", ["🤢", "💚"], "", SCENE_CARD_IMAGES.kheviaStomachache),
+  austinRunnyNose: sceneCard("Austin", "I have a runny nose.", "male", ["🤧", "💧"], "", SCENE_CARD_IMAGES.austinRunnyNose),
+  theySoreThroat: sceneCard("Group", "They have a sore throat.", "group", ["😷", "🗣️"], "", SCENE_CARD_IMAGES.theySoreThroat),
+  seniorHandHurts: sceneCard("Senior", "My hand hurts.", "male", ["✋", "⚡"], "", SCENE_CARD_IMAGES.seniorHandHurts),
+  rianaHandHurts: sceneCard("Riana", "Her hand hurts.", "female", ["✋", "⚡"], "", SCENE_CARD_IMAGES.rianaHandHurts),
+  francoLegHurts: sceneCard("Franco", "His foot hurts.", "male", ["🦶", "⚡"], "", SCENE_CARD_IMAGES.francoLegHurts),
+  hisHandsLegsHurt: sceneCard("Austin", "His hands and legs hurt.", "male", ["🙌", "🦵"], "", SCENE_CARD_IMAGES.hisHandsLegsHurt),
+  theirHandsHurt: sceneCard("Team", "Their hands hurt.", "group", ["🙌", "✨"], "", SCENE_CARD_IMAGES.theirHandsHurt),
+  christinaEyeHurts: sceneCard("Christina", "Her eye hurts.", "female", ["👁️", "⚡"], "", SCENE_CARD_IMAGES.christinaEyeHurts),
+  francoEyesHurt: sceneCard("Franco", "My eyes hurt.", "male", ["👀", "⚡"], "", SCENE_CARD_IMAGES.francoEyesHurt),
+  yesSheRunnyNose: sceneCard("Selena", "Yes, she does.", "female", ["🤧", "✅"], "", SCENE_CARD_IMAGES.yesSheRunnyNose),
+  noSheStomachache: sceneCard("Khevia", "No, she doesn't. She has a stomachache.", "female", ["🤢", "❌"], "", SCENE_CARD_IMAGES.noSheStomachache),
+  yesHeFever: sceneCard("Austin", "Yes, he does.", "male", ["🤒", "✅"], "", SCENE_CARD_IMAGES.yesHeFever),
+  noHeToothache: sceneCard("Senior", "No, he doesn't. He has a toothache.", "male", ["🦷", "❌"], "", SCENE_CARD_IMAGES.noHeToothache),
+  yesTheyRunnyNose: sceneCard("Pair", "Yes, they do.", "group", ["🤧", "✅"], "", SCENE_CARD_IMAGES.yesTheyRunnyNose),
+  noTheyHeadache: sceneCard("Group", "No, they don't. They have a headache.", "group", ["🤕", "❌"], "", SCENE_CARD_IMAGES.noTheyHeadache)
 };
 
 const MC_QUESTIONS = [
@@ -531,7 +559,7 @@ function scrambleVisualFor(text) {
     return visualCard("Leg hurts", SCENE_IMAGES.legHurts, "Leg hurts");
   }
   if (normalized.includes("his foot hurts")) {
-    return visualCard("Foot hurts", SCENE_IMAGES.legHurts, "Foot hurts");
+    return visualCard("Foot hurts", SCENE_IMAGES.footHurts, "Foot hurts");
   }
   if (normalized.includes("hand hurts") || normalized.includes("hands hurt")) {
     return visualCard("Hands hurt", SCENE_IMAGES.handsHurt, "Hands hurt");
