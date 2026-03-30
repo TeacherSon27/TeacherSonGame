@@ -128,27 +128,27 @@ const PDF_REFERENCE_IMAGES = {
 };
 
 const SCENE_CARD_IMAGES = {
-  rianaFever: `./assets/custom-whats-wrong/female-fever.png?v=${CUSTOM_IMAGE_VERSION}`,
-  seniorToothache: `./assets/custom-whats-wrong/male-toothache.png?v=${CUSTOM_IMAGE_VERSION}`,
-  selenaFootHurts: `./assets/custom-whats-wrong/female-foot-hurts.png?v=${CUSTOM_IMAGE_VERSION}`,
-  austinHandsHurt: `./assets/custom-whats-wrong/male-hands-hurt.png?v=${CUSTOM_IMAGE_VERSION}`,
-  rianaHeadache: `./assets/custom-whats-wrong/female-headache.png?v=${CUSTOM_IMAGE_VERSION}`,
+  rianaFever: `./assets/custom-whats-wrong/male-headache.png?v=${CUSTOM_IMAGE_VERSION}`,
+  seniorToothache: `./assets/custom-whats-wrong/female-headache.png?v=${CUSTOM_IMAGE_VERSION}`,
+  selenaFootHurts: SCENE_IMAGES.legHurts,
+  austinHandsHurt: SCENE_IMAGES.handsHurt,
+  rianaHeadache: SCENE_IMAGES.headache,
   kheviaStomachache: `./assets/custom-whats-wrong/female-stomachache.png?v=${CUSTOM_IMAGE_VERSION}`,
-  austinRunnyNose: `./assets/custom-whats-wrong/male-runny-nose.png?v=${CUSTOM_IMAGE_VERSION}`,
+  austinRunnyNose: `./assets/custom-whats-wrong/female-runny-nose.png?v=${CUSTOM_IMAGE_VERSION}`,
   theySoreThroat: `./assets/custom-whats-wrong/group-sick.png?v=${CUSTOM_IMAGE_VERSION}`,
-  seniorHandHurts: `./assets/custom-whats-wrong/hand-hurts.png?v=${CUSTOM_IMAGE_VERSION}`,
-  rianaHandHurts: `./assets/custom-whats-wrong/female-hand-hurts.png?v=${CUSTOM_IMAGE_VERSION}`,
-  francoLegHurts: `./assets/custom-whats-wrong/male-foot-hurts.png?v=${CUSTOM_IMAGE_VERSION}`,
-  hisHandsLegsHurt: `./assets/custom-whats-wrong/male-hands-and-legs-hurt.png?v=${CUSTOM_IMAGE_VERSION}`,
-  theirHandsHurt: `./assets/custom-whats-wrong/female-hands-hurt.png?v=${CUSTOM_IMAGE_VERSION}`,
-  christinaEyeHurts: `./assets/custom-whats-wrong/female-eye-hurts.png?v=${CUSTOM_IMAGE_VERSION}`,
-  francoEyesHurt: `./assets/custom-whats-wrong/male-eye-hurts.png?v=${CUSTOM_IMAGE_VERSION}`,
-  yesSheRunnyNose: `./assets/custom-whats-wrong/female-runny-nose.png?v=${CUSTOM_IMAGE_VERSION}`,
+  seniorHandHurts: SCENE_IMAGES.handHurts,
+  rianaHandHurts: SCENE_IMAGES.handHurts,
+  francoLegHurts: `./assets/custom-whats-wrong/male-hands-and-legs-hurt.png?v=${CUSTOM_IMAGE_VERSION}`,
+  hisHandsLegsHurt: `./assets/custom-whats-wrong/hands-and-legs-hurt.png?v=${CUSTOM_IMAGE_VERSION}`,
+  theirHandsHurt: SCENE_IMAGES.handsHurt,
+  christinaEyeHurts: `./assets/custom-whats-wrong/female-foot-hurts.png?v=${CUSTOM_IMAGE_VERSION}`,
+  francoEyesHurt: `./assets/custom-whats-wrong/female-sore-throat.png?v=${CUSTOM_IMAGE_VERSION}`,
+  yesSheRunnyNose: `./assets/custom-whats-wrong/male-fever.png?v=${CUSTOM_IMAGE_VERSION}`,
   noSheStomachache: `./assets/custom-whats-wrong/female-stomachache.png?v=${CUSTOM_IMAGE_VERSION}`,
-  yesHeFever: `./assets/custom-whats-wrong/male-fever.png?v=${CUSTOM_IMAGE_VERSION}`,
-  noHeToothache: `./assets/custom-whats-wrong/male-toothache.png?v=${CUSTOM_IMAGE_VERSION}`,
-  yesTheyRunnyNose: `./assets/custom-whats-wrong/runny-nose.png?v=${CUSTOM_IMAGE_VERSION}`,
-  noTheyHeadache: `./assets/custom-whats-wrong/headache.png?v=${CUSTOM_IMAGE_VERSION}`
+  yesHeFever: SCENE_IMAGES.fever,
+  noHeToothache: `./assets/custom-whats-wrong/female-headache.png?v=${CUSTOM_IMAGE_VERSION}`,
+  yesTheyRunnyNose: SCENE_IMAGES.runnyNose,
+  noTheyHeadache: SCENE_IMAGES.headache
 };
 
 const IMAGE_PRELOAD_URLS = Array.from(
@@ -202,16 +202,16 @@ const MC_QUESTIONS = [
 const PICTURE_QUESTIONS = [
   pictureQuestion("What’s wrong with her?", "rianaFever", ["rianaFever", "seniorToothache", "selenaFootHurts", "austinHandsHurt"], "Pick the matching scene card.", "G5 - L2"),
   pictureQuestion("What’s wrong with him?", "seniorToothache", ["seniorToothache", "rianaHeadache", "kheviaStomachache", "francoLegHurts"], "Pick the matching scene card.", "G5 - L2"),
-  pictureQuestion("What’s wrong with her?", "selenaFootHurts", ["selenaFootHurts", "rianaHandHurts", "christinaEyeHurts", "kheviaStomachache"], "Pick the matching scene card.", "G5 - L2"),
-  pictureQuestion("What’s wrong with him?", "austinHandsHurt", ["austinHandsHurt", "francoLegHurts", "seniorHandHurts", "francoEyesHurt"], "Pick the matching scene card.", "G5 - L2"),
-  pictureQuestion("What’s wrong with her?", "rianaHeadache", ["rianaHeadache", "rianaFever", "selenaFootHurts", "christinaEyeHurts"], "Pick the matching scene card.", "G5 - L2"),
+  pictureQuestion("What’s wrong?", "selenaFootHurts", ["selenaFootHurts", "rianaHandHurts", "christinaEyeHurts", "kheviaStomachache"], "Pick the matching scene card.", "G5 - L2"),
+  pictureQuestion("What’s wrong?", "austinHandsHurt", ["austinHandsHurt", "francoLegHurts", "seniorHandHurts", "francoEyesHurt"], "Pick the matching scene card.", "G5 - L2"),
+  pictureQuestion("What’s wrong?", "rianaHeadache", ["rianaHeadache", "rianaFever", "selenaFootHurts", "christinaEyeHurts"], "Pick the matching scene card.", "G5 - L2"),
   pictureQuestion("What’s wrong with her?", "kheviaStomachache", ["kheviaStomachache", "rianaFever", "rianaHeadache", "selenaFootHurts"], "Pick the matching scene card.", "G5 - L2"),
   pictureQuestion("What’s wrong with you?", "austinRunnyNose", ["austinRunnyNose", "seniorHandHurts", "francoEyesHurt", "kheviaStomachache"], "Pick the matching scene card.", "G5 - L2"),
   pictureQuestion("What’s wrong with them?", "theySoreThroat", ["theySoreThroat", "theirHandsHurt", "yesTheyRunnyNose", "noTheyHeadache"], "Pick the matching scene card.", "G5 - L2"),
   pictureQuestion("What’s wrong with you?", "seniorHandHurts", ["seniorHandHurts", "austinHandsHurt", "rianaHandHurts", "francoLegHurts"], "Pick the matching scene card.", "G5 - L2"),
-  pictureQuestion("What’s wrong with her?", "rianaHandHurts", ["rianaHandHurts", "christinaEyeHurts", "selenaFootHurts", "rianaHeadache"], "Pick the matching scene card.", "G5 - L2"),
+  pictureQuestion("What’s wrong?", "rianaHandHurts", ["rianaHandHurts", "christinaEyeHurts", "selenaFootHurts", "rianaHeadache"], "Pick the matching scene card.", "G5 - L2"),
   pictureQuestion("What’s wrong with him?", "francoLegHurts", ["francoLegHurts", "seniorHandHurts", "austinHandsHurt", "seniorToothache"], "Pick the matching scene card.", "G5 - L2"),
-  pictureQuestion("What’s wrong with him?", "hisHandsLegsHurt", ["hisHandsLegsHurt", "theirHandsHurt", "theySoreThroat", "francoEyesHurt"], "Pick the matching scene card.", "G5 - L2"),
+  pictureQuestion("What’s wrong?", "hisHandsLegsHurt", ["hisHandsLegsHurt", "theirHandsHurt", "theySoreThroat", "francoEyesHurt"], "Pick the matching scene card.", "G5 - L2"),
   pictureQuestion("What’s wrong with them?", "theirHandsHurt", ["theirHandsHurt", "hisHandsLegsHurt", "theySoreThroat", "yesTheyRunnyNose"], "Pick the matching scene card.", "G5 - L2"),
   pictureQuestion("What’s wrong with her?", "christinaEyeHurts", ["christinaEyeHurts", "rianaHandHurts", "rianaHeadache", "rianaFever"], "Pick the matching scene card.", "G5 - L2"),
   pictureQuestion("What’s wrong with you?", "francoEyesHurt", ["francoEyesHurt", "austinRunnyNose", "seniorHandHurts", "christinaEyeHurts"], "Pick the matching scene card.", "G5 - L2"),
@@ -486,6 +486,16 @@ function bindQuestionImages(root = ui.questionArea) {
 }
 
 function hintQuestionFor(text) {
+  const overrides = {
+    "Her leg hurts.": "What's wrong?",
+    "His hands hurt.": "What's wrong?",
+    "She has a headache.": "What's wrong?",
+    "Her hand hurts.": "What's wrong?",
+    "His hands and legs hurt.": "What's wrong?"
+  };
+  if (overrides[text]) {
+    return overrides[text];
+  }
   const normalized = text.toLowerCase();
   if (normalized.includes("one eye")) {
     return "How many eyes are there?";
