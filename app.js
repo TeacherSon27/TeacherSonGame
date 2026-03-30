@@ -91,7 +91,7 @@ const LEVELS = [
   }
 ];
 
-const CUSTOM_IMAGE_VERSION = "20260330a";
+const CUSTOM_IMAGE_VERSION = "20260330b";
 
 const SCENE_IMAGES = {
   fever: `./assets/custom-whats-wrong/fever.png?v=${CUSTOM_IMAGE_VERSION}`,
