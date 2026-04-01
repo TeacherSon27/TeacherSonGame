@@ -91,20 +91,25 @@ const LEVELS = [
   }
 ];
 
-const CUSTOM_IMAGE_VERSION = "20260401a";
+const CUSTOM_IMAGE_VERSION = "20260401b";
 
 const SCENE_IMAGES = {
   fever: `./assets/custom-whats-wrong/fever.png?v=${CUSTOM_IMAGE_VERSION}`,
   toothache: `./assets/custom-whats-wrong/toothache.png?v=${CUSTOM_IMAGE_VERSION}`,
   footHurts: `./assets/custom-whats-wrong/foot-hurts.png?v=${CUSTOM_IMAGE_VERSION}`,
+  feetHurt: `./assets/custom-whats-wrong/feet-hurt.png?v=${CUSTOM_IMAGE_VERSION}`,
+  armHurts: `./assets/custom-whats-wrong/arm-hurts.png?v=${CUSTOM_IMAGE_VERSION}`,
+  armsHurt: `./assets/custom-whats-wrong/arms-hurt.png?v=${CUSTOM_IMAGE_VERSION}`,
   handHurts: `./assets/custom-whats-wrong/hand-hurts.png?v=${CUSTOM_IMAGE_VERSION}`,
   handsHurt: `./assets/custom-whats-wrong/hands-hurt.png?v=${CUSTOM_IMAGE_VERSION}`,
   headache: `./assets/custom-whats-wrong/headache.png?v=${CUSTOM_IMAGE_VERSION}`,
   stomachache: `./assets/custom-whats-wrong/stomachache.png?v=${CUSTOM_IMAGE_VERSION}`,
+  noseHurts: `./assets/custom-whats-wrong/nose-hurts.png?v=${CUSTOM_IMAGE_VERSION}`,
   runnyNose: `./assets/custom-whats-wrong/runny-nose.png?v=${CUSTOM_IMAGE_VERSION}`,
   soreThroat: `./assets/custom-whats-wrong/sore-throat.png?v=${CUSTOM_IMAGE_VERSION}`,
   legHurts: `./assets/custom-whats-wrong/leg-hurts.png?v=${CUSTOM_IMAGE_VERSION}`,
   earHurts: `./assets/custom-whats-wrong/ear-hurts.png?v=${CUSTOM_IMAGE_VERSION}`,
+  earsHurt: `./assets/custom-whats-wrong/ears-hurt.png?v=${CUSTOM_IMAGE_VERSION}`,
   eyeHurtsFemale: `./assets/custom-whats-wrong/eye-hurts-female.png?v=${CUSTOM_IMAGE_VERSION}`,
   eyeHurtsMale: `./assets/custom-whats-wrong/eye-hurts-male.png?v=${CUSTOM_IMAGE_VERSION}`
 };
@@ -124,7 +129,7 @@ const PDF_REFERENCE_IMAGES = {
   twoFeet: `./assets/custom-whats-wrong/two-feet.png?v=${CUSTOM_IMAGE_VERSION}`,
   fiveLegs: `./assets/custom-whats-wrong/five-legs.png?v=${CUSTOM_IMAGE_VERSION}`,
   handHurtsEmoji: `./assets/custom-whats-wrong/hand-hurts.png?v=${CUSTOM_IMAGE_VERSION}`,
-  footHurtsEmoji: `./assets/custom-whats-wrong/foot-hurts.png?v=${CUSTOM_IMAGE_VERSION}`,
+  footHurtsEmoji: `./assets/custom-whats-wrong/feet-hurt.png?v=${CUSTOM_IMAGE_VERSION}`,
   handsAndLegsBoy: `./assets/custom-whats-wrong/hands-and-legs-hurt.png?v=${CUSTOM_IMAGE_VERSION}`
 };
 
@@ -569,10 +574,10 @@ function scrambleVisualFor(text) {
     return visualCard("Hands and legs hurt", PDF_REFERENCE_IMAGES.handsAndLegsBoy, "Hands and legs hurt");
   }
   if (normalized.includes("my hand hurts") || normalized.includes("her hand hurts")) {
-    return visualCard("Hand hurts", PDF_REFERENCE_IMAGES.handHurtsEmoji, "Hand hurts");
+    return visualCard("Hand hurts", SCENE_IMAGES.handHurts, "Hand hurts");
   }
   if (normalized.includes("my feet hurt")) {
-    return visualCard("Foot hurts", PDF_REFERENCE_IMAGES.footHurtsEmoji, "Foot hurts");
+    return visualCard("Feet hurt", SCENE_IMAGES.feetHurt, "Feet hurt");
   }
   if (normalized.includes("her foot hurts")) {
     return visualCard("Foot hurts", SCENE_IMAGES.footHurts, "Foot hurts");
@@ -585,6 +590,9 @@ function scrambleVisualFor(text) {
   }
   if (normalized.includes("his ear hurts")) {
     return visualCard("Ear hurts", SCENE_IMAGES.earHurts, "Ear hurts");
+  }
+  if (normalized.includes("my nose hurts")) {
+    return visualCard("Nose hurts", SCENE_IMAGES.noseHurts, "Nose hurts");
   }
   if (normalized.includes("hand hurts") || normalized.includes("hands hurt")) {
     return visualCard("Hands hurt", SCENE_IMAGES.handsHurt, "Hands hurt");
