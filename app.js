@@ -91,7 +91,7 @@ const LEVELS = [
   }
 ];
 
-const CUSTOM_IMAGE_VERSION = "20260330b";
+const CUSTOM_IMAGE_VERSION = "20260401a";
 
 const SCENE_IMAGES = {
   fever: `./assets/custom-whats-wrong/fever.png?v=${CUSTOM_IMAGE_VERSION}`,
@@ -104,6 +104,7 @@ const SCENE_IMAGES = {
   runnyNose: `./assets/custom-whats-wrong/runny-nose.png?v=${CUSTOM_IMAGE_VERSION}`,
   soreThroat: `./assets/custom-whats-wrong/sore-throat.png?v=${CUSTOM_IMAGE_VERSION}`,
   legHurts: `./assets/custom-whats-wrong/leg-hurts.png?v=${CUSTOM_IMAGE_VERSION}`,
+  earHurts: `./assets/custom-whats-wrong/ear-hurts.png?v=${CUSTOM_IMAGE_VERSION}`,
   eyeHurtsFemale: `./assets/custom-whats-wrong/eye-hurts-female.png?v=${CUSTOM_IMAGE_VERSION}`,
   eyeHurtsMale: `./assets/custom-whats-wrong/eye-hurts-male.png?v=${CUSTOM_IMAGE_VERSION}`
 };
@@ -130,18 +131,18 @@ const PDF_REFERENCE_IMAGES = {
 const SCENE_CARD_IMAGES = {
   rianaFever: `./assets/custom-whats-wrong/male-headache.png?v=${CUSTOM_IMAGE_VERSION}`,
   seniorToothache: `./assets/custom-whats-wrong/female-headache.png?v=${CUSTOM_IMAGE_VERSION}`,
-  selenaFootHurts: SCENE_IMAGES.legHurts,
+  selenaFootHurts: SCENE_IMAGES.footHurts,
   austinHandsHurt: SCENE_IMAGES.handsHurt,
-  rianaHeadache: SCENE_IMAGES.headache,
+  rianaHeadache: `./assets/custom-whats-wrong/female-toothache.png?v=${CUSTOM_IMAGE_VERSION}`,
   kheviaStomachache: `./assets/custom-whats-wrong/female-stomachache.png?v=${CUSTOM_IMAGE_VERSION}`,
-  austinRunnyNose: `./assets/custom-whats-wrong/female-runny-nose.png?v=${CUSTOM_IMAGE_VERSION}`,
+  austinRunnyNose: `./assets/custom-whats-wrong/male-stomachache.png?v=${CUSTOM_IMAGE_VERSION}`,
   theySoreThroat: `./assets/custom-whats-wrong/group-sick.png?v=${CUSTOM_IMAGE_VERSION}`,
   seniorHandHurts: SCENE_IMAGES.handHurts,
   rianaHandHurts: SCENE_IMAGES.handHurts,
-  francoLegHurts: `./assets/custom-whats-wrong/male-hands-and-legs-hurt.png?v=${CUSTOM_IMAGE_VERSION}`,
-  hisHandsLegsHurt: `./assets/custom-whats-wrong/hands-and-legs-hurt.png?v=${CUSTOM_IMAGE_VERSION}`,
+  francoLegHurts: SCENE_IMAGES.footHurts,
+  hisEarHurts: SCENE_IMAGES.earHurts,
   theirHandsHurt: SCENE_IMAGES.handsHurt,
-  christinaEyeHurts: `./assets/custom-whats-wrong/female-foot-hurts.png?v=${CUSTOM_IMAGE_VERSION}`,
+  christinaEyeHurts: `./assets/custom-whats-wrong/male-foot-hurts.png?v=${CUSTOM_IMAGE_VERSION}`,
   francoEyesHurt: `./assets/custom-whats-wrong/female-sore-throat.png?v=${CUSTOM_IMAGE_VERSION}`,
   yesSheRunnyNose: `./assets/custom-whats-wrong/male-fever.png?v=${CUSTOM_IMAGE_VERSION}`,
   noSheStomachache: `./assets/custom-whats-wrong/female-stomachache.png?v=${CUSTOM_IMAGE_VERSION}`,
@@ -163,18 +164,18 @@ const IMAGE_PRELOAD_URLS = Array.from(
 const SCENES = {
   rianaFever: sceneCard("Riana", "She has a fever.", "female", ["🤒", "🌡️"], "", SCENE_CARD_IMAGES.rianaFever),
   seniorToothache: sceneCard("Senior", "He has a toothache.", "male", ["🦷", "😖"], "", SCENE_CARD_IMAGES.seniorToothache),
-  selenaFootHurts: sceneCard("Picture Clue", "Her leg hurts.", "female", ["🦵", "⚡"], "", SCENE_CARD_IMAGES.selenaFootHurts),
+  selenaFootHurts: sceneCard("Picture Clue", "Her foot hurts.", "female", ["🦶", "⚡"], "", SCENE_CARD_IMAGES.selenaFootHurts),
   austinHandsHurt: sceneCard("Picture Clue", "His hands hurt.", "male", ["🙌", "⚡"], "", SCENE_CARD_IMAGES.austinHandsHurt),
-  rianaHeadache: sceneCard("Picture Clue", "She has a headache.", "female", ["🤕", "💫"], "", SCENE_CARD_IMAGES.rianaHeadache),
+  rianaHeadache: sceneCard("Riana", "She has a headache.", "female", ["🤕", "💫"], "", SCENE_CARD_IMAGES.rianaHeadache),
   kheviaStomachache: sceneCard("Khevia", "She has a stomachache.", "female", ["🤢", "💚"], "", SCENE_CARD_IMAGES.kheviaStomachache),
   austinRunnyNose: sceneCard("Austin", "I have a runny nose.", "male", ["🤧", "💧"], "", SCENE_CARD_IMAGES.austinRunnyNose),
   theySoreThroat: sceneCard("Group", "They have a sore throat.", "group", ["😷", "🗣️"], "", SCENE_CARD_IMAGES.theySoreThroat),
   seniorHandHurts: sceneCard("Picture Clue", "My hand hurts.", "male", ["✋", "⚡"], "", SCENE_CARD_IMAGES.seniorHandHurts),
   rianaHandHurts: sceneCard("Picture Clue", "Her hand hurts.", "female", ["✋", "⚡"], "", SCENE_CARD_IMAGES.rianaHandHurts),
-  francoLegHurts: sceneCard("Austin", "His foot hurts.", "male", ["🦶", "⚡"], "", SCENE_CARD_IMAGES.francoLegHurts),
-  hisHandsLegsHurt: sceneCard("Picture Clue", "His hands and legs hurt.", "male", ["🙌", "🦵"], "", SCENE_CARD_IMAGES.hisHandsLegsHurt),
+  francoLegHurts: sceneCard("Picture Clue", "His foot hurts.", "male", ["🦶", "⚡"], "", SCENE_CARD_IMAGES.francoLegHurts),
+  hisEarHurts: sceneCard("Picture Clue", "His ear hurts.", "male", ["👂", "⚡"], "", SCENE_CARD_IMAGES.hisEarHurts),
   theirHandsHurt: sceneCard("Team", "Their hands hurt.", "group", ["🙌", "✨"], "", SCENE_CARD_IMAGES.theirHandsHurt),
-  christinaEyeHurts: sceneCard("Riana", "Her eye hurts.", "female", ["👁️", "⚡"], "", SCENE_CARD_IMAGES.christinaEyeHurts),
+  christinaEyeHurts: sceneCard("Christina", "Her eye hurts.", "female", ["👁️", "⚡"], "", SCENE_CARD_IMAGES.christinaEyeHurts),
   francoEyesHurt: sceneCard("Franco", "My eyes hurt.", "male", ["👀", "⚡"], "", SCENE_CARD_IMAGES.francoEyesHurt),
   yesSheRunnyNose: sceneCard("Answer Card", "Yes, she does.", "female", ["🤧", "✅"], "", SCENE_CARD_IMAGES.yesSheRunnyNose),
   noSheStomachache: sceneCard("Khevia", "No, she doesn't. She has a stomachache.", "female", ["🤢", "❌"], "", SCENE_CARD_IMAGES.noSheStomachache),
@@ -202,17 +203,17 @@ const MC_QUESTIONS = [
 const PICTURE_QUESTIONS = [
   pictureQuestion("What’s wrong with her?", "rianaFever", ["rianaFever", "seniorToothache", "selenaFootHurts", "austinHandsHurt"], "Pick the matching scene card.", "G5 - L2"),
   pictureQuestion("What’s wrong with him?", "seniorToothache", ["seniorToothache", "rianaHeadache", "kheviaStomachache", "francoLegHurts"], "Pick the matching scene card.", "G5 - L2"),
-  pictureQuestion("What’s wrong?", "selenaFootHurts", ["selenaFootHurts", "rianaHandHurts", "christinaEyeHurts", "kheviaStomachache"], "Pick the matching scene card.", "G5 - L2"),
-  pictureQuestion("What’s wrong?", "austinHandsHurt", ["austinHandsHurt", "francoLegHurts", "seniorHandHurts", "francoEyesHurt"], "Pick the matching scene card.", "G5 - L2"),
-  pictureQuestion("What’s wrong?", "rianaHeadache", ["rianaHeadache", "rianaFever", "selenaFootHurts", "christinaEyeHurts"], "Pick the matching scene card.", "G5 - L2"),
+  pictureQuestion("What’s wrong with her?", "selenaFootHurts", ["selenaFootHurts", "rianaHandHurts", "christinaEyeHurts", "kheviaStomachache"], "Pick the matching scene card.", "G5 - L2"),
+  pictureQuestion("What’s wrong with him?", "austinHandsHurt", ["austinHandsHurt", "francoLegHurts", "seniorHandHurts", "francoEyesHurt"], "Pick the matching scene card.", "G5 - L2"),
+  pictureQuestion("What’s wrong with her?", "rianaHeadache", ["rianaHeadache", "rianaFever", "selenaFootHurts", "christinaEyeHurts"], "Pick the matching scene card.", "G5 - L2"),
   pictureQuestion("What’s wrong with her?", "kheviaStomachache", ["kheviaStomachache", "rianaFever", "rianaHeadache", "selenaFootHurts"], "Pick the matching scene card.", "G5 - L2"),
   pictureQuestion("What’s wrong with you?", "austinRunnyNose", ["austinRunnyNose", "seniorHandHurts", "francoEyesHurt", "kheviaStomachache"], "Pick the matching scene card.", "G5 - L2"),
   pictureQuestion("What’s wrong with them?", "theySoreThroat", ["theySoreThroat", "theirHandsHurt", "yesTheyRunnyNose", "noTheyHeadache"], "Pick the matching scene card.", "G5 - L2"),
   pictureQuestion("What’s wrong with you?", "seniorHandHurts", ["seniorHandHurts", "austinHandsHurt", "rianaHandHurts", "francoLegHurts"], "Pick the matching scene card.", "G5 - L2"),
-  pictureQuestion("What’s wrong?", "rianaHandHurts", ["rianaHandHurts", "christinaEyeHurts", "selenaFootHurts", "rianaHeadache"], "Pick the matching scene card.", "G5 - L2"),
+  pictureQuestion("What’s wrong with her?", "rianaHandHurts", ["rianaHandHurts", "christinaEyeHurts", "selenaFootHurts", "rianaHeadache"], "Pick the matching scene card.", "G5 - L2"),
   pictureQuestion("What’s wrong with him?", "francoLegHurts", ["francoLegHurts", "seniorHandHurts", "austinHandsHurt", "seniorToothache"], "Pick the matching scene card.", "G5 - L2"),
-  pictureQuestion("What’s wrong?", "hisHandsLegsHurt", ["hisHandsLegsHurt", "theirHandsHurt", "theySoreThroat", "francoEyesHurt"], "Pick the matching scene card.", "G5 - L2"),
-  pictureQuestion("What’s wrong with them?", "theirHandsHurt", ["theirHandsHurt", "hisHandsLegsHurt", "theySoreThroat", "yesTheyRunnyNose"], "Pick the matching scene card.", "G5 - L2"),
+  pictureQuestion("What’s wrong with him?", "hisEarHurts", ["hisEarHurts", "theirHandsHurt", "theySoreThroat", "francoEyesHurt"], "Pick the matching scene card.", "G5 - L2"),
+  pictureQuestion("What’s wrong with them?", "theirHandsHurt", ["theirHandsHurt", "hisEarHurts", "theySoreThroat", "yesTheyRunnyNose"], "Pick the matching scene card.", "G5 - L2"),
   pictureQuestion("What’s wrong with her?", "christinaEyeHurts", ["christinaEyeHurts", "rianaHandHurts", "rianaHeadache", "rianaFever"], "Pick the matching scene card.", "G5 - L2"),
   pictureQuestion("What’s wrong with you?", "francoEyesHurt", ["francoEyesHurt", "austinRunnyNose", "seniorHandHurts", "christinaEyeHurts"], "Pick the matching scene card.", "G5 - L2"),
   pictureQuestion("Does she have a runny nose?", "yesSheRunnyNose", ["yesSheRunnyNose", "noSheStomachache", "rianaFever", "kheviaStomachache"], "Pick the best answer card.", "G5 - L2"),
@@ -225,7 +226,7 @@ const PICTURE_QUESTIONS = [
 const SCRAMBLE_QUESTIONS = [
   scrambleQuestion("There is one eye.", "G5 Co-teaching 1"),
   scrambleQuestion("There are two hands.", "G5 Co-teaching 1"),
-  scrambleQuestion("There are three arms.", "G5 Co-teaching 1"),
+  scrambleQuestion("There are three hands.", "G5 Co-teaching 1"),
   scrambleQuestion("There are two feet.", "G5 Co-teaching 1"),
   scrambleQuestion("There are five legs.", "G5 Co-teaching 1"),
   scrambleQuestion("My hand hurts.", "G5 Co-teaching 1"),
@@ -238,14 +239,14 @@ const SCRAMBLE_QUESTIONS = [
   scrambleQuestion("I have a stomachache.", "G5 - MIDTERM"),
   scrambleQuestion("She has a fever.", "G5 - L2"),
   scrambleQuestion("He has a toothache.", "G5 - L2"),
-  scrambleQuestion("Her leg hurts.", "G5 - L2"),
+  scrambleQuestion("Her foot hurts.", "G5 - L2"),
   scrambleQuestion("His hands hurt.", "G5 - L2"),
   scrambleQuestion("She has a headache.", "G5 - L2"),
   scrambleQuestion("She has a stomachache.", "G5 - L2"),
   scrambleQuestion("They have a sore throat.", "G5 - L2"),
   scrambleQuestion("Her hand hurts.", "G5 - L2"),
   scrambleQuestion("His foot hurts.", "G5 - L2"),
-  scrambleQuestion("His hands and legs hurt.", "G5 - L2"),
+  scrambleQuestion("His ear hurts.", "G5 - L2"),
   scrambleQuestion("Their hands hurt.", "G5 - L2"),
   scrambleQuestion("Her eye hurts.", "G5 - L2"),
   scrambleQuestion("Does she have a runny nose?", "G5 - L2"),
@@ -266,12 +267,12 @@ const QUESTION_BANKS = {
 const LANGUAGE_BANK = [
   "She has a fever.",
   "He has a toothache.",
-  "Her leg hurts.",
+  "Her foot hurts.",
   "His hands hurt.",
   "They have a sore throat.",
   "Her hand hurts.",
   "His foot hurts.",
-  "His hands and legs hurt.",
+  "His ear hurts.",
   "Their hands hurt.",
   "Her eye hurts.",
   "Does she have a runny nose?",
@@ -488,11 +489,12 @@ function bindQuestionImages(root = ui.questionArea) {
 
 function hintQuestionFor(text) {
   const overrides = {
-    "Her leg hurts.": "What's wrong?",
-    "His hands hurt.": "What's wrong?",
-    "She has a headache.": "What's wrong?",
-    "Her hand hurts.": "What's wrong?",
-    "His hands and legs hurt.": "What's wrong?"
+    "There are three hands.": "How many hands are there?",
+    "Her foot hurts.": "What's wrong with her?",
+    "His hands hurt.": "What's wrong with him?",
+    "She has a headache.": "What's wrong with her?",
+    "Her hand hurts.": "What's wrong with her?",
+    "His ear hurts.": "What's wrong with him?"
   };
   if (overrides[text]) {
     return overrides[text];
@@ -502,6 +504,9 @@ function hintQuestionFor(text) {
     return "How many eyes are there?";
   }
   if (normalized.includes("two hands")) {
+    return "How many hands are there?";
+  }
+  if (normalized.includes("three hands")) {
     return "How many hands are there?";
   }
   if (normalized.includes("three arms")) {
@@ -551,6 +556,9 @@ function scrambleVisualFor(text) {
   if (normalized.includes("three arms")) {
     return visualCard("Three arms", PDF_REFERENCE_IMAGES.threeArms, "Three arms");
   }
+  if (normalized.includes("three hands")) {
+    return visualCard("Three hands", PDF_REFERENCE_IMAGES.threeArms, "Three hands");
+  }
   if (normalized.includes("two feet")) {
     return visualCard("Two feet", PDF_REFERENCE_IMAGES.twoFeet, "Two feet");
   }
@@ -566,11 +574,17 @@ function scrambleVisualFor(text) {
   if (normalized.includes("my feet hurt")) {
     return visualCard("Foot hurts", PDF_REFERENCE_IMAGES.footHurtsEmoji, "Foot hurts");
   }
+  if (normalized.includes("her foot hurts")) {
+    return visualCard("Foot hurts", SCENE_IMAGES.footHurts, "Foot hurts");
+  }
   if (normalized.includes("her leg hurts")) {
     return visualCard("Leg hurts", SCENE_IMAGES.legHurts, "Leg hurts");
   }
   if (normalized.includes("his foot hurts")) {
     return visualCard("Foot hurts", SCENE_IMAGES.footHurts, "Foot hurts");
+  }
+  if (normalized.includes("his ear hurts")) {
+    return visualCard("Ear hurts", SCENE_IMAGES.earHurts, "Ear hurts");
   }
   if (normalized.includes("hand hurts") || normalized.includes("hands hurt")) {
     return visualCard("Hands hurt", SCENE_IMAGES.handsHurt, "Hands hurt");
