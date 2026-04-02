@@ -8,6 +8,25 @@ const BACKEND = (() => {
   };
 })();
 const LOCAL_STORAGE_SCORES_KEY = "whats-wrong-local-scores-v1";
+const DEVICE_ID_KEY = "whats-wrong-device-id-v1";
+const SYSTEM_PLAYERS_ON_ID = "__system_players_on__";
+const MAX_SHARED_PLAYERS = 100;
+
+function getDeviceId() {
+  try {
+    const existing = window.localStorage.getItem(DEVICE_ID_KEY);
+    if (existing) {
+      return existing;
+    }
+    const created = `device-${Math.random().toString(36).slice(2, 10)}${Date.now().toString(36)}`;
+    window.localStorage.setItem(DEVICE_ID_KEY, created);
+    return created;
+  } catch {
+    return `device-${Math.random().toString(36).slice(2, 10)}`;
+  }
+}
+
+const DEVICE_ID = getDeviceId();
 
 function hasSupabaseBackend() {
   return BACKEND.mode === "supabase" && BACKEND.supabaseUrl && BACKEND.supabaseAnonKey;
@@ -315,18 +334,22 @@ const state = {
   timerId: null,
   nextQuestionTimeoutId: null,
   soundOn: true,
+  playersOn: false,
   leaderboardRefreshId: null,
   scores: [],
   scoresLoaded: false,
   syncInFlight: false,
   currentPlayerSynced: false,
-  remoteMissingCount: 0
+  remoteMissingCount: 0,
+  playerRegistrationTimeoutId: null
 };
 
 const ui = {
   playerForm: document.getElementById("playerForm"),
   playerName: document.getElementById("playerName"),
   startLevel: document.getElementById("startLevel"),
+  playersOnButton: document.getElementById("playersOnButton"),
+  playersOffButton: document.getElementById("playersOffButton"),
   soundToggle: document.getElementById("soundToggle"),
   roadmapCards: [...document.querySelectorAll(".roadmap-card")],
   playerValue: document.getElementById("playerValue"),
@@ -854,7 +877,8 @@ function startGame() {
 
   stopTimer();
   clearNextQuestionTimeout();
-  if (state.currentPlayerEntryId) {
+  const reuseRegisteredEntry = state.playersOn && state.currentPlayerEntryId && state.currentPlayer === playerName;
+  if (state.currentPlayerEntryId && !reuseRegisteredEntry) {
     const previousEntryId = state.currentPlayerEntryId;
     removeEntryLocally(previousEntryId);
     deleteRemoteScore(previousEntryId)
@@ -870,7 +894,9 @@ function startGame() {
   state.levelOrder = buildLevelOrder(startLevelId);
   state.currentStageIndex = 0;
   state.currentPlayer = playerName;
-  state.currentPlayerEntryId = `live-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`;
+  state.currentPlayerEntryId = reuseRegisteredEntry
+    ? state.currentPlayerEntryId
+    : `live-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`;
   state.currentLevelIndex = state.levelOrder[0];
   state.completedLevelIds = [];
   state.currentQuestionIndex = 0;
@@ -1503,6 +1529,47 @@ function snapshotScores(scores = loadScores()) {
   );
 }
 
+function isSystemEntry(entry) {
+  return typeof entry?.id === "string" && entry.id.startsWith("__system_");
+}
+
+function displayScores(scores = loadScores()) {
+  return scores.filter((entry) => !isSystemEntry(entry));
+}
+
+function slugifyName(name) {
+  return name
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "")
+    .slice(0, 24) || "player";
+}
+
+function playersOnSystemEntry() {
+  return {
+    id: SYSTEM_PLAYERS_ON_ID,
+    name: "GAME PLAYERS ON",
+    score: 0,
+    correctAnswers: 0,
+    playedAt: Date.now(),
+    live: false
+  };
+}
+
+function updatePlayersOnButton() {
+  if (!ui.playersOnButton) {
+    return;
+  }
+  ui.playersOnButton.textContent = "GAME PLAYERS ON";
+  ui.playersOnButton.classList.toggle("is-on", state.playersOn);
+  ui.playersOnButton.setAttribute("aria-pressed", String(state.playersOn));
+}
+
+function syncPlayersOnState(scores = loadScores()) {
+  state.playersOn = scores.some((entry) => entry.id === SYSTEM_PLAYERS_ON_ID);
+  updatePlayersOnButton();
+}
+
 function upsertScoreEntry(scores, entry) {
   const filteredScores = scores.filter((item) => item.id !== entry.id);
   filteredScores.push(entry);
@@ -1514,6 +1581,7 @@ function persistScores(nextScores, options = {}) {
   state.scores = [...nextScores];
   state.scoresLoaded = true;
   lastLeaderboardSnapshot = snapshotScores(nextScores);
+  syncPlayersOnState(nextScores);
   renderLeaderboard();
   if (typeof sendRequest === "function") {
     sendRequest()
@@ -1550,7 +1618,7 @@ function syncCurrentPlayerEntry() {
 }
 
 function renderLeaderboard() {
-  const scores = loadScores()
+  const scores = displayScores()
     .sort((left, right) => right.score - left.score || right.correctAnswers - left.correctAnswers || left.playedAt - right.playedAt);
 
   if (!state.scoresLoaded) {
@@ -1559,7 +1627,7 @@ function renderLeaderboard() {
   }
 
   if (!scores.length) {
-    ui.leaderboard.innerHTML = `<p class="empty-state">No shared scores yet. Start the first game to fill the leaderboard.</p>`;
+    ui.leaderboard.innerHTML = `<p class="empty-state">No shared players yet. Turn on GAME PLAYERS ON, then let students enter their names.</p>`;
     return;
   }
 
@@ -1606,6 +1674,108 @@ function renderLeaderboard() {
 
   leaderboardVisualState.positions = new Map(scores.map((entry, index) => [entry.id, index]));
   leaderboardVisualState.scores = new Map(scores.map((entry) => [entry.id, entry.score]));
+}
+
+function ensurePlayersOnButtonReady() {
+  updatePlayersOnButton();
+  if (!hasSupabaseBackend()) {
+    ui.playersOnButton.title = "Shared cross-device player mode needs the online leaderboard backend.";
+  }
+}
+
+function turnPlayersOn() {
+  if (state.playersOn) {
+    setFeedback("GAME PLAYERS ON is already active.", "");
+    playSound("click");
+    registerPlayerIfNeeded();
+    return;
+  }
+
+  playSound("click");
+  persistScores(upsertScoreEntry(loadScores(), playersOnSystemEntry()), {
+    sendRequest: () => upsertRemoteScore(playersOnSystemEntry())
+  });
+  setFeedback("GAME PLAYERS ON is active. Student names will appear instantly on the shared leaderboard across devices.", "good");
+  registerPlayerIfNeeded();
+}
+
+function turnPlayersOff() {
+  const confirmed = window.confirm("Turn GAME PLAYERS OFF and reset the whole game for everyone?");
+  if (!confirmed) {
+    return;
+  }
+
+  playSound("finish");
+  resetLeaderboardVisuals();
+  persistScores([], {
+    sendRequest: async () => {
+      await resetRemoteScores();
+      return [];
+    }
+  });
+  clearCurrentRun({ keepPlayerName: "" });
+  setFeedback("GAME PLAYERS OFF reset the whole game. All players, names, scores, and points were removed.", "good");
+}
+
+function schedulePlayerRegistration() {
+  if (state.playerRegistrationTimeoutId) {
+    window.clearTimeout(state.playerRegistrationTimeoutId);
+  }
+  state.playerRegistrationTimeoutId = window.setTimeout(() => {
+    state.playerRegistrationTimeoutId = null;
+    registerPlayerIfNeeded();
+  }, 250);
+}
+
+function registerPlayerIfNeeded() {
+  if (!state.playersOn || state.gameActive) {
+    return;
+  }
+
+  const playerName = ui.playerName.value.trim();
+  if (!playerName) {
+    return;
+  }
+
+  const existingDisplayScores = displayScores();
+  const previousEntryId = state.currentPlayerEntryId;
+  const previousName = state.currentPlayer;
+  if (
+    previousEntryId &&
+    previousName &&
+    previousName !== playerName &&
+    existingDisplayScores.some(
+      (entry) => entry.id === previousEntryId && entry.score === 0 && entry.correctAnswers === 0 && !entry.live
+    )
+  ) {
+    removeEntryLocally(previousEntryId);
+    deleteRemoteScore(previousEntryId).catch(() => {});
+  }
+  const targetId = state.currentPlayerEntryId && state.currentPlayer === playerName
+    ? state.currentPlayerEntryId
+    : `player-${DEVICE_ID}-${slugifyName(playerName)}`;
+  const entryAlreadyExists = existingDisplayScores.some((entry) => entry.id === targetId);
+  const existingEntry = existingDisplayScores.find((item) => item.id === targetId);
+
+  if (!entryAlreadyExists && existingDisplayScores.length >= MAX_SHARED_PLAYERS) {
+    setFeedback(`The shared board is full. It can hold up to ${MAX_SHARED_PLAYERS} players.`, "warn");
+    return;
+  }
+
+  const entry = {
+    id: targetId,
+    name: playerName,
+    score: existingEntry?.score ?? 0,
+    correctAnswers: existingEntry?.correctAnswers ?? 0,
+    playedAt: Date.now(),
+    live: state.gameActive
+  };
+
+  state.currentPlayer = playerName;
+  state.currentPlayerEntryId = targetId;
+  const nextScores = upsertScoreEntry(loadScores(), entry);
+  persistScores(nextScores, { sendRequest: () => upsertRemoteScore(entry) });
+  updateStats();
 }
 
 function removeLeaderboardEntry(entryId) {
@@ -1679,10 +1849,12 @@ async function refreshLeaderboardIfNeeded() {
       state.scores = scores;
       state.scoresLoaded = true;
       lastLeaderboardSnapshot = currentSnapshot;
+      syncPlayersOnState(scores);
       renderLeaderboard();
       return;
     }
     state.scoresLoaded = true;
+    syncPlayersOnState(scores);
   } catch {
     state.scoresLoaded = true;
   } finally {
@@ -1823,6 +1995,13 @@ ui.playerForm.addEventListener("submit", (event) => {
   startGame();
 });
 
+ui.playerName.addEventListener("input", () => {
+  if (!state.gameActive) {
+    schedulePlayerRegistration();
+    updateStats();
+  }
+});
+
 ui.startLevel.addEventListener("change", () => {
   if (!state.gameActive) {
     updateStats();
@@ -1842,6 +2021,8 @@ ui.roadmapCards.forEach((card) => {
 });
 
 ui.soundToggle.addEventListener("click", toggleSound);
+ui.playersOnButton.addEventListener("click", turnPlayersOn);
+ui.playersOffButton.addEventListener("click", turnPlayersOff);
 ui.restartButton.addEventListener("click", restartCurrentPlayer);
 ui.resetGameButton.addEventListener("click", resetEntireGame);
 ui.checkButton.addEventListener("click", submitScramble);
@@ -1903,6 +2084,7 @@ renderLeaderboard();
 warmImageAssets();
 loadShareLink();
 showIdleState();
+ensurePlayersOnButtonReady();
 updateStats();
 startLeaderboardSync();
 refreshLeaderboardIfNeeded();

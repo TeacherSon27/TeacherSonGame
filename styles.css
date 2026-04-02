@@ -210,6 +210,13 @@ select {
   align-items: center;
 }
 
+.header-controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
 .panel-header h2,
 .side-panel h2 {
   margin: 0;
@@ -231,6 +238,23 @@ select {
   font-weight: 900;
   cursor: pointer;
   box-shadow: 0 10px 22px rgba(76, 141, 255, 0.16);
+}
+
+.players-on-button {
+  color: #fff;
+  background: linear-gradient(145deg, #596377, #3f4754);
+  box-shadow: 0 12px 24px rgba(63, 71, 84, 0.26);
+}
+
+.players-on-button.is-on {
+  background: linear-gradient(145deg, #13c58f, #4c8dff);
+  box-shadow: 0 12px 24px rgba(25, 200, 193, 0.28);
+}
+
+.players-off-button {
+  color: #fff;
+  background: linear-gradient(145deg, #ff245f, #ff9b42);
+  box-shadow: 0 12px 24px rgba(255, 36, 95, 0.26);
 }
 
 .start-card,
