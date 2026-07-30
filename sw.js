@@ -1,4 +1,4 @@
-const CACHE_NAME = "whats-wrong-v36";
+const CACHE_NAME = "whats-wrong-v37";
 const ASSETS = [
   "./",
   "./index.html",
@@ -9,7 +9,6 @@ const ASSETS = [
   "./game-qr.svg",
   "./share-url.txt",
   "./assets/backgrounds/lab-background.png",
-  "./assets/frames/choice-frame.png",
   "./assets/custom-whats-wrong/one-eye.png?v=20260401b",
   "./assets/custom-whats-wrong/two-hands.png?v=20260401b",
   "./assets/custom-whats-wrong/three-arms.png?v=20260401b",
@@ -35,22 +34,14 @@ const ASSETS = [
   "./assets/custom-whats-wrong/eye-hurts-male.png?v=20260401b",
   "./assets/custom-whats-wrong/group-sick.png?v=20260401b",
   "./assets/custom-whats-wrong/hands-and-legs-hurt.png?v=20260401b",
-  "./assets/custom-whats-wrong/female-fever.png?v=20260401b",
   "./assets/custom-whats-wrong/male-fever.png?v=20260401b",
   "./assets/custom-whats-wrong/female-toothache.png?v=20260401b",
-  "./assets/custom-whats-wrong/male-toothache.png?v=20260401b",
-  "./assets/custom-whats-wrong/female-foot-hurts.png?v=20260401b",
   "./assets/custom-whats-wrong/male-foot-hurts.png?v=20260401b",
-  "./assets/custom-whats-wrong/male-hands-hurt.png?v=20260401b",
-  "./assets/custom-whats-wrong/female-hand-hurts.png?v=20260401b",
-  "./assets/custom-whats-wrong/female-hands-hurt.png?v=20260401b",
   "./assets/custom-whats-wrong/female-headache.png?v=20260401b",
+  "./assets/custom-whats-wrong/female-sore-throat.png?v=20260401b",
   "./assets/custom-whats-wrong/female-stomachache.png?v=20260401b",
-  "./assets/custom-whats-wrong/male-runny-nose.png?v=20260401b",
-  "./assets/custom-whats-wrong/female-runny-nose.png?v=20260401b",
-  "./assets/custom-whats-wrong/female-eye-hurts.png?v=20260401b",
-  "./assets/custom-whats-wrong/male-eye-hurts.png?v=20260401b",
-  "./assets/custom-whats-wrong/male-hands-and-legs-hurt.png?v=20260401b"
+  "./assets/custom-whats-wrong/male-headache.png?v=20260401b",
+  "./assets/custom-whats-wrong/male-stomachache.png?v=20260401b"
 ];
 
 self.addEventListener("install", (event) => {
