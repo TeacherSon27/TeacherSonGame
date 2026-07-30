@@ -1,11 +1,11 @@
-const CACHE_NAME = "whats-wrong-v40";
+const CACHE_NAME = "whats-wrong-v41";
 const ASSETS = [
   "./",
   "./index.html",
   "./backend-config.js",
-  "./styles.css",
-  "./app.js",
-  "./manifest.json",
+  "./styles.css?v=20260731-gold2",
+  "./app.js?v=20260731-gold2",
+  "./manifest.json?v=20260731-gold2",
   "./game-qr.svg",
   "./share-url.txt",
   "./assets/og.png",
@@ -68,6 +68,23 @@ self.addEventListener("fetch", (event) => {
     event.respondWith(fetch(event.request));
     return;
   }
+
+  if (
+    event.request.mode === "navigate" ||
+    ["document", "style", "script"].includes(event.request.destination)
+  ) {
+    event.respondWith(
+      fetch(event.request)
+        .then((networkResponse) => {
+          const responseCopy = networkResponse.clone();
+          caches.open(CACHE_NAME).then((cache) => cache.put(event.request, responseCopy));
+          return networkResponse;
+        })
+        .catch(() => caches.match(event.request))
+    );
+    return;
+  }
+
   event.respondWith(
     caches.match(event.request).then((cachedResponse) => {
       if (cachedResponse) {

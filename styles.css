@@ -2388,3 +2388,122 @@ body::after {
   border-color: rgba(165, 46, 67, 0.3);
   background: rgba(255, 234, 228, 0.92);
 }
+
+/* Strong gold-glass surfaces: keep the main game unmistakably golden. */
+html,
+body {
+  background-color: #d99813;
+  background-image:
+    radial-gradient(circle at 12% 8%, rgba(255, 255, 236, 0.9), transparent 24%),
+    radial-gradient(circle at 88% 14%, rgba(255, 239, 143, 0.8), transparent 28%),
+    radial-gradient(circle at 18% 88%, rgba(255, 213, 76, 0.72), transparent 31%),
+    radial-gradient(circle at 86% 82%, rgba(255, 248, 194, 0.64), transparent 30%),
+    linear-gradient(145deg, #f8cb51 0%, #d88c0a 46%, #f4bc36 100%);
+}
+
+.page-shell::before {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.12), rgba(124, 70, 0, 0.06)),
+    radial-gradient(circle at 50% 0%, rgba(255, 255, 224, 0.7), transparent 38%);
+}
+
+.hero,
+.panel,
+.start-card,
+.mission-card,
+.hero-live-item,
+.roadmap-card,
+.stat-card,
+.question-area,
+.choice-card,
+.picture-target-card,
+.picture-target-visual,
+.image-fallback,
+.scene-card,
+.scene-photo-wrap,
+.scramble-target-card,
+.word-bank,
+.answer-tray,
+.feedback,
+.input-group input,
+.input-group select,
+.leaderboard tbody tr,
+.qr-image,
+.share-link {
+  border-color: rgba(255, 255, 255, 0.76);
+  background:
+    linear-gradient(122deg, rgba(255, 255, 255, 0.48), transparent 34%),
+    linear-gradient(145deg, rgba(255, 243, 169, 0.88), rgba(244, 180, 41, 0.68));
+  box-shadow:
+    0 18px 40px rgba(104, 57, 0, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.96),
+    inset 0 -1px 0 rgba(139, 80, 0, 0.1);
+  backdrop-filter: blur(22px) saturate(1.22);
+  -webkit-backdrop-filter: blur(22px) saturate(1.22);
+}
+
+.hero {
+  background:
+    radial-gradient(circle at 8% 0%, rgba(255, 255, 255, 0.94), transparent 28%),
+    linear-gradient(135deg, rgba(255, 240, 143, 0.94), rgba(231, 153, 17, 0.82));
+}
+
+.panel,
+.question-area {
+  background:
+    radial-gradient(circle at 8% 0%, rgba(255, 255, 255, 0.78), transparent 28%),
+    linear-gradient(145deg, rgba(255, 237, 139, 0.87), rgba(237, 167, 27, 0.66));
+}
+
+.start-card,
+.mission-card,
+.hero-live-item,
+.stat-card,
+.choice-card,
+.picture-target-card,
+.picture-target-visual,
+.image-fallback,
+.scene-card,
+.scene-photo-wrap,
+.scramble-target-card,
+.word-bank,
+.answer-tray,
+.feedback,
+.input-group input,
+.input-group select,
+.leaderboard tbody tr,
+.qr-image,
+.share-link {
+  background:
+    linear-gradient(120deg, rgba(255, 255, 255, 0.5), transparent 36%),
+    linear-gradient(145deg, rgba(255, 246, 187, 0.9), rgba(247, 194, 70, 0.72));
+}
+
+.hero-live-timer,
+.timer-stat {
+  background:
+    radial-gradient(circle at 22% 0%, rgba(255, 255, 255, 0.76), transparent 36%),
+    linear-gradient(145deg, #ffe782, #dfa00f);
+}
+
+.roadmap-card.active,
+.choice-card.selected,
+.scene-card.selected {
+  background:
+    radial-gradient(circle at 18% 0%, rgba(255, 255, 255, 0.82), transparent 36%),
+    linear-gradient(145deg, #ffe16a, #d98c08);
+}
+
+.roadmap-card.done {
+  background:
+    radial-gradient(circle at 18% 0%, rgba(255, 255, 255, 0.8), transparent 36%),
+    linear-gradient(145deg, rgba(224, 246, 201, 0.92), rgba(247, 193, 68, 0.76));
+}
+
+.feedback.good {
+  background: rgba(225, 250, 232, 0.94);
+}
+
+.feedback.bad {
+  background: rgba(255, 234, 228, 0.94);
+}
