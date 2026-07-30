@@ -1,4 +1,4 @@
-const CACHE_NAME = "whats-wrong-v37";
+const CACHE_NAME = "whats-wrong-v38";
 const ASSETS = [
   "./",
   "./index.html",
@@ -8,6 +8,7 @@ const ASSETS = [
   "./manifest.json",
   "./game-qr.svg",
   "./share-url.txt",
+  "./assets/og.png",
   "./assets/backgrounds/lab-background.png",
   "./assets/custom-whats-wrong/one-eye.png?v=20260401b",
   "./assets/custom-whats-wrong/two-hands.png?v=20260401b",

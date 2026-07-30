@@ -351,6 +351,17 @@ const ui = {
   playersOnButton: document.getElementById("playersOnButton"),
   playersOffButton: document.getElementById("playersOffButton"),
   soundToggle: document.getElementById("soundToggle"),
+  fullscreenButton: document.getElementById("fullscreenButton"),
+  fullscreenLabel: document.getElementById("fullscreenLabel"),
+  toolsButton: document.getElementById("toolsButton"),
+  toolsCloseButton: document.getElementById("toolsCloseButton"),
+  toolsDrawer: document.getElementById("toolsDrawer"),
+  toolsBackdrop: document.getElementById("toolsBackdrop"),
+  panelKicker: document.getElementById("panelKicker"),
+  panelTitle: document.getElementById("panelTitle"),
+  headerPlayerValue: document.getElementById("headerPlayerValue"),
+  headerTimeValue: document.getElementById("headerTimeValue"),
+  headerScoreValue: document.getElementById("headerScoreValue"),
   roadmapCards: [...document.querySelectorAll(".roadmap-card")],
   playerValue: document.getElementById("playerValue"),
   levelValue: document.getElementById("levelValue"),
@@ -818,6 +829,14 @@ function updateStats() {
   ui.modePill.textContent = level ? level.mode : "Finished";
   ui.scorePill.textContent = level ? `Worth ${level.points.firstTry}/${level.points.secondTry}` : "Run Complete";
   ui.timerBar.style.width = `${Math.max(0, ratio) * 100}%`;
+  ui.headerPlayerValue.textContent = state.currentPlayer || "Waiting";
+  ui.headerTimeValue.textContent = ui.timeValue.textContent;
+  ui.headerScoreValue.textContent = String(state.score);
+  ui.panelKicker.textContent = state.gameActive ? "Live Round" : "Player Entry";
+  ui.panelTitle.textContent = state.gameActive && level
+    ? `${level.label} · ${level.mode}`
+    : "Start The Timed Run";
+  document.body.classList.toggle("game-in-progress", state.gameActive);
   updateRoadmap();
   syncCurrentPlayerEntry();
   renderLeaderboard();
@@ -875,6 +894,7 @@ function startGame() {
     return;
   }
 
+  setToolsDrawer(false, { returnFocus: false });
   stopTimer();
   clearNextQuestionTimeout();
   const reuseRegisteredEntry = state.playersOn && state.currentPlayerEntryId && state.currentPlayer === playerName;
@@ -1223,7 +1243,7 @@ function moveWordBetweenAreas(sourceArea, sourceIndex, targetArea, targetIndex =
 }
 
 function handleTileDragStart(event) {
-  if (!state.gameActive || state.awaitingNext) {
+  if (!state.gameActive || state.awaitingNext || state.dragItem) {
     return;
   }
 
@@ -1247,19 +1267,28 @@ function handleTileDragStart(event) {
   document.body.appendChild(ghost);
 
   button.classList.add("dragging-source");
+  if (button.setPointerCapture && event.pointerId !== undefined) {
+    try {
+      button.setPointerCapture(event.pointerId);
+    } catch {
+      // Continue with window-level tracking when capture is unavailable.
+    }
+  }
   state.dragItem = {
     area,
     index,
     word,
     ghost,
     sourceButton: button,
+    pointerId: event.pointerId ?? null,
     offsetX: event.clientX - rect.left,
     offsetY: event.clientY - rect.top
   };
 
   updateDragGhostPosition(event.clientX, event.clientY);
-  window.addEventListener("pointermove", handleTileDragMove);
-  window.addEventListener("pointerup", handleTileDragEnd, { once: true });
+  window.addEventListener("pointermove", handleTileDragMove, { passive: false });
+  window.addEventListener("pointerup", handleTileDragEnd);
+  window.addEventListener("pointercancel", handleTileDragEnd);
 }
 
 function updateDragGhostPosition(clientX, clientY) {
@@ -1271,11 +1300,20 @@ function updateDragGhostPosition(clientX, clientY) {
 }
 
 function handleTileDragMove(event) {
+  if (!state.dragItem || (state.dragItem.pointerId !== null && event.pointerId !== state.dragItem.pointerId)) {
+    return;
+  }
+  event.preventDefault();
   updateDragGhostPosition(event.clientX, event.clientY);
 }
 
 function handleTileDragEnd(event) {
+  if (!state.dragItem || (state.dragItem.pointerId !== null && event.pointerId !== state.dragItem.pointerId)) {
+    return;
+  }
   window.removeEventListener("pointermove", handleTileDragMove);
+  window.removeEventListener("pointerup", handleTileDragEnd);
+  window.removeEventListener("pointercancel", handleTileDragEnd);
   const dragItem = state.dragItem;
   state.dragItem = null;
   if (!dragItem) {
@@ -1283,7 +1321,23 @@ function handleTileDragEnd(event) {
   }
 
   dragItem.sourceButton.classList.remove("dragging-source");
+  if (dragItem.sourceButton.releasePointerCapture && dragItem.pointerId !== null) {
+    try {
+      dragItem.sourceButton.releasePointerCapture(dragItem.pointerId);
+    } catch {
+      // The browser may have already released capture.
+    }
+  }
   dragItem.ghost.remove();
+
+  if (!state.gameActive || state.currentQuestion?.type !== "scramble") {
+    return;
+  }
+
+  if (event.type === "pointercancel") {
+    renderScramble(state.currentQuestion);
+    return;
+  }
 
   const dropTarget = document.elementFromPoint(event.clientX, event.clientY);
   const tileTarget = dropTarget?.closest(".word-tile");
@@ -1983,6 +2037,86 @@ function loadShareLink() {
     });
 }
 
+const toolsOverlayMedia = window.matchMedia("(max-width: 1499px), (any-pointer: coarse)");
+
+function usesToolsOverlay() {
+  return toolsOverlayMedia.matches;
+}
+
+function setToolsDrawer(open, options = {}) {
+  const { returnFocus = true } = options;
+  const wasOpen = document.body.classList.contains("tools-open");
+  const shouldOpen = Boolean(open && usesToolsOverlay());
+  document.body.classList.toggle("tools-open", shouldOpen);
+  ui.toolsButton.setAttribute("aria-expanded", String(shouldOpen));
+  ui.toolsDrawer.setAttribute("aria-hidden", String(usesToolsOverlay() && !shouldOpen));
+
+  const playPanel = document.querySelector(".play-panel");
+  if (playPanel && "inert" in playPanel) {
+    playPanel.inert = shouldOpen;
+  }
+
+  if (shouldOpen) {
+    window.requestAnimationFrame(() => ui.toolsCloseButton.focus());
+  } else if (wasOpen && returnFocus) {
+    ui.toolsButton.focus();
+  }
+}
+
+function syncToolsLayout() {
+  if (!usesToolsOverlay()) {
+    setToolsDrawer(false, { returnFocus: false });
+    ui.toolsDrawer.setAttribute("aria-hidden", "false");
+  } else {
+    ui.toolsDrawer.setAttribute(
+      "aria-hidden",
+      String(!document.body.classList.contains("tools-open"))
+    );
+  }
+}
+
+function applyInterfaceProfile() {
+  const coarsePointer = window.matchMedia("(any-pointer: coarse)").matches;
+  document.body.classList.toggle("touch-interface", navigator.maxTouchPoints > 0 || coarsePointer);
+  document.body.classList.toggle(
+    "standalone-interface",
+    window.matchMedia("(display-mode: standalone)").matches
+  );
+  syncToolsLayout();
+}
+
+function currentFullscreenElement() {
+  return document.fullscreenElement || document.webkitFullscreenElement || null;
+}
+
+function syncFullscreenButton() {
+  const active = Boolean(currentFullscreenElement());
+  ui.fullscreenButton.setAttribute("aria-pressed", String(active));
+  ui.fullscreenLabel.textContent = active ? "Exit Full Screen" : "Full Screen";
+}
+
+async function toggleFullscreen() {
+  try {
+    if (currentFullscreenElement()) {
+      const exit = document.exitFullscreen || document.webkitExitFullscreen;
+      if (exit) {
+        await exit.call(document);
+      }
+    } else {
+      const root = document.documentElement;
+      const request = root.requestFullscreen || root.webkitRequestFullscreen;
+      if (!request) {
+        setFeedback("Full screen is unavailable here. Add the game to the iPad Home Screen for an app-like view.", "warn");
+        return;
+      }
+      await request.call(root);
+    }
+  } catch {
+    setFeedback("The browser did not allow full screen. You can continue playing normally.", "warn");
+  }
+  syncFullscreenButton();
+}
+
 function toggleSound() {
   state.soundOn = !state.soundOn;
   ui.soundToggle.textContent = state.soundOn ? "Sound On" : "Sound Off";
@@ -2021,6 +2155,12 @@ ui.roadmapCards.forEach((card) => {
 });
 
 ui.soundToggle.addEventListener("click", toggleSound);
+ui.fullscreenButton.addEventListener("click", toggleFullscreen);
+ui.toolsButton.addEventListener("click", () => {
+  setToolsDrawer(!document.body.classList.contains("tools-open"), { returnFocus: false });
+});
+ui.toolsCloseButton.addEventListener("click", () => setToolsDrawer(false));
+ui.toolsBackdrop.addEventListener("click", () => setToolsDrawer(false));
 ui.playersOnButton.addEventListener("click", turnPlayersOn);
 ui.playersOffButton.addEventListener("click", turnPlayersOff);
 ui.restartButton.addEventListener("click", restartCurrentPlayer);
@@ -2064,6 +2204,14 @@ ui.questionArea.addEventListener(
   true
 );
 
+ui.questionArea.addEventListener("contextmenu", (event) => {
+  if (event.target.closest("button, img")) {
+    event.preventDefault();
+  }
+});
+
+ui.questionArea.addEventListener("dragstart", (event) => event.preventDefault());
+
 ui.leaderboard.addEventListener("click", (event) => {
   const button = event.target.closest(".remove-player-button");
   if (!button) {
@@ -2072,6 +2220,20 @@ ui.leaderboard.addEventListener("click", (event) => {
   removeLeaderboardEntry(button.dataset.entryId);
 });
 
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape" && document.body.classList.contains("tools-open")) {
+    setToolsDrawer(false);
+  }
+});
+
+document.addEventListener("fullscreenchange", syncFullscreenButton);
+document.addEventListener("webkitfullscreenchange", syncFullscreenButton);
+if (typeof toolsOverlayMedia.addEventListener === "function") {
+  toolsOverlayMedia.addEventListener("change", syncToolsLayout);
+} else if (typeof toolsOverlayMedia.addListener === "function") {
+  toolsOverlayMedia.addListener(syncToolsLayout);
+}
+
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
     navigator.serviceWorker.register("./sw.js").catch(() => {});
@@ -2079,6 +2241,8 @@ if ("serviceWorker" in navigator) {
 }
 
 renderLanguageBank();
+applyInterfaceProfile();
+syncFullscreenButton();
 lastLeaderboardSnapshot = snapshotScores();
 renderLeaderboard();
 warmImageAssets();
