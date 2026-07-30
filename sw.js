@@ -1,4 +1,4 @@
-const CACHE_NAME = "whats-wrong-v39";
+const CACHE_NAME = "whats-wrong-v40";
 const ASSETS = [
   "./",
   "./index.html",
